@@ -18,34 +18,74 @@
 import React from "react";
 import { Link } from "react-router-dom";
 // reactstrap components
-import { Button, Container, Row, Col } from "reactstrap";
+import { Button, Container, Row, Col, Card, CardBody, CardHeader } from "reactstrap";
+import Loader from "react-loader-spinner";
+import axios from "axios";
 
-class Examples extends React.Component {
+class TopDeals extends React.Component {
+
+  state = {
+    item: [],
+    itemPrices: [],
+    loading: true
+  }
+
+  componentDidMount() {
+    this.setState({ loading: true }, () => {
+      axios.get(`https://3eg3r872u3.execute-api.eu-west-2.amazonaws.com/staging/getbestdeals`)
+        .then(res => {
+          const itemInfo = res.data.body
+          console.log(itemInfo)
+          this.setState({item: itemInfo, loading: false})
+      })
+    })
+  }
+
   render() {
     return (
       <div className="section section-examples" data-background-color="black">
         {/* <img alt="..." className="path" src={require("assets/img/path1.png")} /> */}
         <div className="space-50" />
         <Container className="text-center">
+          <h2 className="title">
+            Top Deals Right Now!
+          </h2>
           <Row>
-            <Col sm="6">
+            <Col sm="4">
+            {this.state.loading ? (
+                <div className="content-center brand">
+                <Card className="card-user">
+                  <Container>
+                    <CardHeader>
+                    </CardHeader>
+                    <CardBody>
+                      <div className="content-center">
+                        <Loader type="TailSpin" color="#00BFFF" height={80} width={80}/>
+                        <p>Loading...</p>
+                      </div>
+                    </CardBody>
+                  </Container>
+                </Card>
+                </div>
+            ) : (
               <Link to="landing-page">
-                <img
-                  alt="..."
-                  className="img-raised"
-                  src={require("assets/img/landing-page.png")}
-                />
+                <div className="content-center brand">
+                <Card className="card-user">
+                  <Container>
+                    <CardHeader>
+                      <p>{this.state.item[0].item_id}</p>
+                    </CardHeader>
+                    <CardBody>
+                      <div className="content-center">
+                      </div>
+                    </CardBody>
+                  </Container>
+                </Card>
+                </div>
               </Link>
-              <Button
-                className="btn-simple btn-round"
-                color="primary"
-                to="landing-page"
-                tag={Link}
-              >
-                View Landing Page
-              </Button>
+            )}
             </Col>
-            <Col sm="6">
+            <Col sm="4">
               <Link to="profile-page">
                 <img
                   alt="..."
@@ -62,6 +102,23 @@ class Examples extends React.Component {
                 View Profile Page
               </Button>
             </Col>
+            <Col sm="4">
+              <Link to="landing-page">
+                <img
+                  alt="..."
+                  className="img-raised"
+                  src={require("assets/img/landing-page.png")}
+                />
+              </Link>
+              <Button
+                className="btn-simple btn-round"
+                color="primary"
+                to="landing-page"
+                tag={Link}
+              >
+                View Landing Page
+              </Button>
+            </Col>
           </Row>
         </Container>
       </div>
@@ -69,4 +126,4 @@ class Examples extends React.Component {
   }
 }
 
-export default Examples;
+export default TopDeals;
