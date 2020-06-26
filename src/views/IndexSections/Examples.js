@@ -21,6 +21,7 @@ import { Link } from "react-router-dom";
 import { Button, Container, Row, Col, Card, CardBody, CardHeader } from "reactstrap";
 import Loader from "react-loader-spinner";
 import axios from "axios";
+import './../../assets/scss/dealCard.scss';
 
 class TopDeals extends React.Component {
 
@@ -54,7 +55,7 @@ class TopDeals extends React.Component {
             <Col sm="4">
             {this.state.loading ? (
                 <div className="content-center brand">
-                <Card className="card-user">
+                <Card>
                   <Container>
                     <CardHeader>
                     </CardHeader>
@@ -70,13 +71,16 @@ class TopDeals extends React.Component {
             ) : (
               <Link to="landing-page">
                 <div className="content-center brand">
-                <Card className="card-user">
+                <Card className="deal-card">
                   <Container>
                     <CardHeader>
-                      <p>{this.state.item[0].item_id}</p>
+                      <img className="img-center img-fluid rounded shadow-lg" alt="Image of product" src={this.state.item[0].item_image}></img>
+                      <h4>{this.state.item[0].item_name}</h4>
                     </CardHeader>
                     <CardBody>
                       <div className="content-center">
+                        <h4>{this.state.item[0].item_price}</h4>
+                        <p>£{this.state.item[0].item_discount} savings!</p>
                       </div>
                     </CardBody>
                   </Container>
@@ -86,37 +90,91 @@ class TopDeals extends React.Component {
             )}
             </Col>
             <Col sm="4">
-              <Link to="profile-page">
-                <img
-                  alt="..."
-                  className="img-raised"
-                  src={require("assets/img/profile-page.png")}
-                />
-              </Link>
-              <Button
-                className="btn-simple btn-round"
-                color="primary"
-                to="profile-page"
-                tag={Link}
-              >
-                View Profile Page
-              </Button>
+              {this.state.loading ? (
+                  <div className="content-center brand">
+                  <Card>
+                    <Container>
+                      <CardHeader>
+                      </CardHeader>
+                      <CardBody>
+                        <div className="content-center">
+                          <Loader type="TailSpin" color="#00BFFF" height={80} width={80}/>
+                          <p>Loading...</p>
+                        </div>
+                      </CardBody>
+                    </Container>
+                  </Card>
+                  </div>
+              ) : (
+                <Link to="landing-page">
+                  <div className="content-center brand">
+                  <Card className="deal-card">
+                    <Container>
+                      <CardHeader>
+                        <img className="img-center img-fluid rounded shadow-lg" alt="Image of product" src={this.state.item[1].item_image}></img>
+                        <h4>{this.state.item[1].item_name}</h4>
+                      </CardHeader>
+                      <CardBody>
+                        <div className="content-center">
+                          <h4>{this.state.item[1].item_price}</h4>
+                          <p>£{this.state.item[1].item_discount} savings!</p>
+                        </div>
+                      </CardBody>
+                    </Container>
+                  </Card>
+                  </div>
+                </Link>
+              )}
             </Col>
             <Col sm="4">
-              <Link to="landing-page">
-                <img
-                  alt="..."
-                  className="img-raised"
-                  src={require("assets/img/landing-page.png")}
-                />
-              </Link>
+              {this.state.loading ? (
+                  <div className="content-center brand">
+                  <Card>
+                    <Container>
+                      <CardHeader>
+                      </CardHeader>
+                      <CardBody>
+                        <div className="content-center">
+                          <Loader type="TailSpin" color="#00BFFF" height={80} width={80}/>
+                          <p>Loading...</p>
+                        </div>
+                      </CardBody>
+                    </Container>
+                  </Card>
+                  </div>
+              ) : (
+                <Link to="landing-page">
+                  <div className="content-center brand">
+                  <Card className="deal-card">
+                    <Container>
+                      <CardHeader>
+                        <img className="img-center img-fluid rounded shadow-lg" alt="Image of product" src={this.state.item[2].item_image}></img>
+                        <h4>{this.state.item[2].item_name}</h4>
+                      </CardHeader>
+                      <CardBody>
+                        <div className="content-center">
+                          <h4>{this.state.item[2].item_price}</h4>
+                          <p>£{this.state.item[2].item_discount} savings!</p>
+                        </div>
+                      </CardBody>
+                    </Container>
+                  </Card>
+                  </div>
+                </Link>
+              )}
+            </Col>           
+          </Row>
+          <Row>
+            <Col sm="12" md={{ size: 4, offset: 4 }}>
               <Button
-                className="btn-simple btn-round"
-                color="primary"
-                to="landing-page"
-                tag={Link}
-              >
-                View Landing Page
+                  className="d-lg-block"
+                  color="info"
+                  data-placement="right"
+                  type="button"
+                  target="_blank"
+                  href="#"
+                >
+                  View All Deals!
               </Button>
             </Col>
           </Row>

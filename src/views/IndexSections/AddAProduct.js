@@ -18,6 +18,7 @@
 import React from "react";
 // reactstrap components
 import { Container, Row, Col, FormGroup, Form, Button, Input } from "reactstrap";
+import './../../assets/scss/addAProduct.scss';
 
 class AddAProduct extends React.Component {
 
