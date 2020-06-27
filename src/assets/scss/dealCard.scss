@@ -1,3 +1,36 @@
 .deal-card {
   min-height: 350px;
 }
+
+.card-image-deals {
+  height: 283px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+}
+
+.font-large {
+  font-size: large;
+}
+
+.card-deals {
+  height: 517px;
+}
+
+@media (max-width: 1200px) {
+  h4 {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 980px) {
+  h4 {
+    font-size: 1.0rem;
+  }
+}
+
+@media (max-width: 576px) {
+  h4 {
+    font-size: 1.15rem;
+  }
+}

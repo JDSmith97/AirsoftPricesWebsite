@@ -19,10 +19,8 @@ import React from "react";
 
 // core components
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
-import PageHeader from "components/PageHeader/PageHeader.js";
+import Deals from "views/IndexSections/Deals.js";
 import Footer from "components/Footer/Footer.js";
-
-import TopDeals from "views/IndexSections/TopDeals.js";
 import AddAProduct from "views/IndexSections/AddAProduct.js";
 
 class Index extends React.Component {
@@ -37,18 +35,8 @@ class Index extends React.Component {
       <>
         <IndexNavbar />
         <div className="wrapper">
-          <PageHeader />
           <div className="main">
-            {/* <Basics />
-            <Navbars />
-            <Tabs />
-            <Pagination />
-            <Notifications />
-            <Typography />
-            <JavaScript />
-            <NucleoIcons />
-            <Signup />*/}
-            <TopDeals /> 
+            <Deals/>
             <AddAProduct />
           </div>
           <Footer />

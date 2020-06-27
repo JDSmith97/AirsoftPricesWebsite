@@ -42,6 +42,10 @@ class TopDeals extends React.Component {
     })
   }
 
+  scrollToTop = () => {
+    window.scrollTo(0, 0)
+  };
+
   render() {
     return (
       <div className="section section-examples" data-background-color="black">
@@ -80,7 +84,7 @@ class TopDeals extends React.Component {
                     <CardBody>
                       <div className="content-center">
                         <h4>{this.state.item[0].item_price}</h4>
-                        <p>£{this.state.item[0].item_discount} savings!</p>
+                        <p><strong>£{this.state.item[0].item_discount}</strong> savings!</p>
                       </div>
                     </CardBody>
                   </Container>
@@ -117,7 +121,7 @@ class TopDeals extends React.Component {
                       <CardBody>
                         <div className="content-center">
                           <h4>{this.state.item[1].item_price}</h4>
-                          <p>£{this.state.item[1].item_discount} savings!</p>
+                          <p><strong>£{this.state.item[1].item_discount}</strong> savings!</p>
                         </div>
                       </CardBody>
                     </Container>
@@ -143,7 +147,7 @@ class TopDeals extends React.Component {
                   </Card>
                   </div>
               ) : (
-                <Link to="landing-page">
+                <Link to={`item/${this.state.item[2].item_id}`} onClick={this.scrollToTop}>
                   <div className="content-center brand">
                   <Card className="deal-card">
                     <Container>
@@ -154,7 +158,7 @@ class TopDeals extends React.Component {
                       <CardBody>
                         <div className="content-center">
                           <h4>{this.state.item[2].item_price}</h4>
-                          <p>£{this.state.item[2].item_discount} savings!</p>
+                          <p><strong>£{this.state.item[2].item_discount}</strong> savings!</p>
                         </div>
                       </CardBody>
                     </Container>
@@ -165,7 +169,8 @@ class TopDeals extends React.Component {
             </Col>           
           </Row>
           <Row>
-            <Col sm="12" md={{ size: 4, offset: 4 }}>
+            <Col sm="4"></Col>
+            <Col sm="4">
               <Button
                   className="d-lg-block"
                   color="info"
@@ -177,6 +182,7 @@ class TopDeals extends React.Component {
                   View All Deals!
               </Button>
             </Col>
+            <Col sm="4"></Col>
           </Row>
         </Container>
       </div>

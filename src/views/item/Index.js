@@ -22,7 +22,7 @@ import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Item from "views/IndexSections/Item.js";
 import Footer from "components/Footer/Footer.js";
 
-import Examples from "views/IndexSections/Examples.js";
+import TopDeals from "views/IndexSections/TopDeals.js";
 import AddAProduct from "views/IndexSections/AddAProduct.js";
 
 class Index extends React.Component {
@@ -39,7 +39,7 @@ class Index extends React.Component {
         <div className="wrapper">
           <Item id={this.props.match.params.id}/>
           <div className="main">
-            <Examples /> 
+            <TopDeals /> 
             <AddAProduct />
           </div>
           <Footer />

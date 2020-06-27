@@ -25,6 +25,7 @@ import "assets/demo/demo.css";
 
 import Index from "views/Index.js";
 import Item from "views/item/Index.js";
+import Deals from "views/deals/Index.js"
 import RegisterPage from "views/examples/RegisterPage.js";
 import ProfilePage from "views/examples/ProfilePage.js";
 
@@ -35,6 +36,10 @@ ReactDOM.render(
       <Route
         exact path="/item/:id"
         render={props => <Item {...props} />}
+      />
+      <Route
+        path="/deals"
+        render={props => <Deals {...props} />}
       />
       {/* <Route
         exact path="/item/:id"

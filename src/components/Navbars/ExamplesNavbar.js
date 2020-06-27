@@ -29,7 +29,11 @@ import {
   Container,
   Row,
   Col,
-  UncontrolledTooltip
+  UncontrolledTooltip,
+  DropdownMenu,
+  DropdownToggle,
+  DropdownItem,
+  UncontrolledDropdown
 } from "reactstrap";
 
 class PagesNavbar extends React.Component {
@@ -191,6 +195,64 @@ class PagesNavbar extends React.Component {
                   Have an issue?
                 </NavLink>
               </NavItem>
+              <UncontrolledDropdown nav>
+                <DropdownToggle
+                  caret
+                  color="default"
+                  data-toggle="dropdown"
+                  href="#airsoftprices"
+                  nav
+                  onClick={e => e.preventDefault()}
+                >
+                  <i className="fa d-lg-none d-xl-none" />
+                  Airsoft Guns
+                </DropdownToggle>
+                <DropdownMenu className="dropdown-with-icons">
+                  <DropdownItem tag={Link} to="/toyko-marui">
+                    Assault Rifles
+                  </DropdownItem>
+                  <DropdownItem tag={Link} to="/register-page">
+                    Register Page
+                  </DropdownItem>
+                  <DropdownItem tag={Link} to="/landing-page">
+                    Landing Page
+                  </DropdownItem>
+                  <DropdownItem tag={Link} to="/profile-page">
+                    Profile Page
+                  </DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
+              <UncontrolledDropdown nav>
+                <DropdownToggle
+                  caret
+                  color="default"
+                  data-toggle="dropdown"
+                  href="#airsoftprices"
+                  nav
+                  onClick={e => e.preventDefault()}
+                >
+                  <i className="fa d-lg-none d-xl-none" />
+                  Manufacturers
+                </DropdownToggle>
+                <DropdownMenu className="dropdown-with-icons">
+                  <DropdownItem tag={Link} to="/toyko-marui">
+                    <i className="tim-icons icon-app" />
+                    Toyko Marui
+                  </DropdownItem>
+                  <DropdownItem tag={Link} to="/register-page">
+                    <i className="tim-icons icon-bullet-list-67" />
+                    Register Page
+                  </DropdownItem>
+                  <DropdownItem tag={Link} to="/landing-page">
+                    <i className="tim-icons icon-image-02" />
+                    Landing Page
+                  </DropdownItem>
+                  <DropdownItem tag={Link} to="/profile-page">
+                    <i className="tim-icons icon-single-02" />
+                    Profile Page
+                  </DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
             </Nav>
           </Collapse>
         </Container>
