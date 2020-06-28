@@ -73,12 +73,14 @@ class TopDeals extends React.Component {
                 </Card>
                 </div>
             ) : (
-              <Link to="landing-page">
+              <Link to={`item/${this.state.item[0].item_id}`} onClick={this.scrollToTop}>
                 <div className="content-center brand">
-                <Card className="deal-card">
+                <Card className="card-deals">
                   <Container>
                     <CardHeader>
-                      <img className="img-center img-fluid rounded shadow-lg" alt="Image of product" src={this.state.item[0].item_image}></img>
+                      <div className="card-image-deals">
+                        <img className="img-center img-fluid rounded" alt="Image of product" src={this.state.item[0].item_image}></img>
+                      </div>
                       <h4>{this.state.item[0].item_name}</h4>
                     </CardHeader>
                     <CardBody>
@@ -110,12 +112,14 @@ class TopDeals extends React.Component {
                   </Card>
                   </div>
               ) : (
-                <Link to="landing-page">
+                <Link to={`item/${this.state.item[1].item_id}`} onClick={this.scrollToTop}>
                   <div className="content-center brand">
-                  <Card className="deal-card">
+                  <Card className="card-deals">
                     <Container>
                       <CardHeader>
-                        <img className="img-center img-fluid rounded shadow-lg" alt="Image of product" src={this.state.item[1].item_image}></img>
+                        <div className="card-image-deals">
+                          <img className="img-center img-fluid rounded" alt="Image of product" src={this.state.item[1].item_image}></img>
+                        </div>
                         <h4>{this.state.item[1].item_name}</h4>
                       </CardHeader>
                       <CardBody>
@@ -149,10 +153,12 @@ class TopDeals extends React.Component {
               ) : (
                 <Link to={`item/${this.state.item[2].item_id}`} onClick={this.scrollToTop}>
                   <div className="content-center brand">
-                  <Card className="deal-card">
+                  <Card className="card-deals">
                     <Container>
                       <CardHeader>
-                        <img className="img-center img-fluid rounded shadow-lg" alt="Image of product" src={this.state.item[2].item_image}></img>
+                        <div className="card-image-deals">
+                          <img className="img-center img-fluid rounded" alt="Image of product" src={this.state.item[2].item_image}></img>
+                        </div>
                         <h4>{this.state.item[2].item_name}</h4>
                       </CardHeader>
                       <CardBody>
@@ -171,16 +177,18 @@ class TopDeals extends React.Component {
           <Row>
             <Col sm="4"></Col>
             <Col sm="4">
-              <Button
-                  className="d-lg-block"
-                  color="info"
-                  data-placement="right"
-                  type="button"
-                  target="_blank"
-                  href="#"
-                >
-                  View All Deals!
-              </Button>
+              <Link to="deals" onClick={this.scrollToTop}>
+                <Button
+                    className="d-lg-block"
+                    color="info"
+                    data-placement="right"
+                    type="button"
+                    target="_blank"
+                    href="deals"
+                  >
+                    View All Deals!
+                </Button>
+              </Link>
             </Col>
             <Col sm="4"></Col>
           </Row>
