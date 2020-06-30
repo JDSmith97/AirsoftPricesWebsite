@@ -28,6 +28,7 @@ class Deals extends React.Component{
   }
 
   getLength = () => {
+    // add category and manufacturer to this url once setup
     axios.get(`https://3eg3r872u3.execute-api.eu-west-2.amazonaws.com/staging/getalldeals?getLength=true`)
         .then(res => {
           const dealsLength = res.data

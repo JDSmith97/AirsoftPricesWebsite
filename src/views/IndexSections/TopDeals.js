@@ -75,22 +75,24 @@ class TopDeals extends React.Component {
             ) : (
               <Link to={`item/${this.state.item[0].item_id}`} onClick={this.scrollToTop}>
                 <div className="content-center brand">
-                <Card className="card-deals">
-                  <Container>
+                  <Card className="py-3 card-deals">
                     <CardHeader>
-                      <div className="card-image-deals">
-                        <img className="img-center img-fluid rounded" alt="Image of product" src={this.state.item[0].item_image}></img>
+                      <div className="card-image-deals rounded">
+                        <img className="img-center img-fluid" alt="Image of product" src={this.state.item[0].item_image}></img>
                       </div>
-                      <h4>{this.state.item[0].item_name}</h4>
                     </CardHeader>
                     <CardBody>
-                      <div className="content-center">
-                        <h4>{this.state.item[0].item_price}</h4>
-                        <p><strong>£{this.state.item[0].item_discount}</strong> savings!</p>
+                      <div className="h-25 mt-4">
+                        <h4 className="">{this.state.item[0].item_name}</h4>
+                      </div>
+                      <div className="h-25">
+                        <h5 className="font-large text-warning"><strong>{this.state.item[0].item_price}</strong></h5>
+                      </div>
+                      <div className="h-25">
+                      <p><strong>{this.state.item[0].item_discount_currency}</strong> savings!</p>
                       </div>
                     </CardBody>
-                  </Container>
-                </Card>
+                  </Card>
                 </div>
               </Link>
             )}
@@ -114,22 +116,24 @@ class TopDeals extends React.Component {
               ) : (
                 <Link to={`item/${this.state.item[1].item_id}`} onClick={this.scrollToTop}>
                   <div className="content-center brand">
-                  <Card className="card-deals">
-                    <Container>
+                    <Card className="py-3 card-deals">
                       <CardHeader>
-                        <div className="card-image-deals">
-                          <img className="img-center img-fluid rounded" alt="Image of product" src={this.state.item[1].item_image}></img>
+                        <div className="card-image-deals rounded">
+                          <img className="img-center img-fluid" alt="Image of product" src={this.state.item[1].item_image}></img>
                         </div>
-                        <h4>{this.state.item[1].item_name}</h4>
                       </CardHeader>
                       <CardBody>
-                        <div className="content-center">
-                          <h4>{this.state.item[1].item_price}</h4>
-                          <p><strong>£{this.state.item[1].item_discount}</strong> savings!</p>
+                        <div className="h-25 mt-4">
+                          <h4 className="">{this.state.item[1].item_name}</h4>
+                        </div>
+                        <div className="h-25">
+                          <h5 className="font-large text-warning"><strong>{this.state.item[1].item_price}</strong></h5>
+                        </div>
+                        <div className="h-25">
+                        <p><strong>{this.state.item[1].item_discount_currency}</strong> savings!</p>
                         </div>
                       </CardBody>
-                    </Container>
-                  </Card>
+                    </Card>
                   </div>
                 </Link>
               )}
@@ -153,22 +157,24 @@ class TopDeals extends React.Component {
               ) : (
                 <Link to={`item/${this.state.item[2].item_id}`} onClick={this.scrollToTop}>
                   <div className="content-center brand">
-                  <Card className="card-deals">
-                    <Container>
+                    <Card className="py-3 card-deals">
                       <CardHeader>
-                        <div className="card-image-deals">
-                          <img className="img-center img-fluid rounded" alt="Image of product" src={this.state.item[2].item_image}></img>
+                        <div className="card-image-deals rounded">
+                          <img className="img-center img-fluid" alt="Image of product" src={this.state.item[2].item_image}></img>
                         </div>
-                        <h4>{this.state.item[2].item_name}</h4>
                       </CardHeader>
                       <CardBody>
-                        <div className="content-center">
-                          <h4>{this.state.item[2].item_price}</h4>
-                          <p><strong>£{this.state.item[2].item_discount}</strong> savings!</p>
+                        <div className="h-25 mt-4">
+                          <h4 className="">{this.state.item[2].item_name}</h4>
+                        </div>
+                        <div className="h-25">
+                          <h5 className="font-large text-warning"><strong>{this.state.item[2].item_price}</strong></h5>
+                        </div>
+                        <div className="h-25">
+                        <p><strong>{this.state.item[2].item_discount_currency}</strong> savings!</p>
                         </div>
                       </CardBody>
-                    </Container>
-                  </Card>
+                    </Card>
                   </div>
                 </Link>
               )}
