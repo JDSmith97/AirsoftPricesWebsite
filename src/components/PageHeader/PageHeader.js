@@ -62,9 +62,10 @@ class PageHeader extends React.Component {
   
 
   componentDidMount() {
-    axios.get(`https://3eg3r872u3.execute-api.eu-west-2.amazonaws.com/staging/getallitems`)
+    axios.get(`https://3eg3r872u3.execute-api.eu-west-2.amazonaws.com/staging/getallitems?offset=0`)
       .then(res => {
-        const itemInfo = res.data.body;
+        console.log(res.data)
+        const itemInfo = res.data;
         this.setState({ allItems: itemInfo });
       })
   }
@@ -75,7 +76,7 @@ class PageHeader extends React.Component {
 
   handleKeyPress(target, value) {
     if(target.charCode==13){
-      if(this.state.value && this.state.value.id >= 0) {
+      if(this.state.value && this.state.value.item_id >= 0) {
         this.setState({ redirect: true });
       }
     }
@@ -84,11 +85,11 @@ class PageHeader extends React.Component {
   render() {
     const defaultProps = {
       options: this.state.allItems,
-      getOptionLabel: (option) => option.name,
+      getOptionLabel: (option) => option.item_name,
     };
 
     if(this.state.redirect) {
-        return <Redirect to={`/item/${this.state.value.id}`}/>
+        return <Redirect to={`/item/${this.state.value.item_id}`}/>
     }
 
     return (
@@ -113,11 +114,11 @@ class PageHeader extends React.Component {
               clearOnEscape={true}
               openOnFocus={false}
               value={this.state.value}
-              getOptionLabel={(option) => option.name}
+              getOptionLabel={(option) => option.item_name}
               renderOption={option => (
                 <React.Fragment>
-                  <NavLink to={`item/${option.id}`}>
-                    {option.name}
+                  <NavLink to={`item/${option.item_id}`}>
+                    {option.item_name}
                   </NavLink>
                 </React.Fragment>
               )}

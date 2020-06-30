@@ -73,7 +73,6 @@ class Item extends React.Component {
       addToTable("Skirmshop UK", item.skirmshop_price, item.skirmshop_stock, item.skirmshop_url)
       addToTable("Bullseye Country Sport", item.bullseye_country_sport_price, item.bullseye_country_sport_stock, item.bullseyecountrysport_url)
     })
-    
     return (
       <div className="page-header header-filter">
         <div className="squares square1" />

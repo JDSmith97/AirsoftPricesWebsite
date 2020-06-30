@@ -49,6 +49,7 @@ class Deals extends React.Component{
       limit: this.state.limit + this.state.counter
     }, () => {
       this.getDeals()
+      this.scrollToRow()
     })
   }
 
@@ -59,13 +60,22 @@ class Deals extends React.Component{
     console.log(this.state.toggleFilters)
   }
 
+  scrollToRow = () => {
+    document
+      .getElementById(this.state.limit-this.state.counter)
+      .scrollIntoView({ behavior: "smooth" });
+  };
+
+  scrollToTop = () => {
+    window.scrollTo(0, 0)
+  };
+
   render() {
-    console.log(this.state.items.length)
-    console.log(this.state.dealLength)
       let columns=[];
       this.state.items.forEach((item,idx) => {
         columns.push(
           <Col sm="4" key={`item ${item.item_id}`}>
+            <Link to={`item/${item.item_id}`} onClick={this.scrollToTop}>
             <Card className="py-3 card-deals">
                 <CardHeader>
                   <div className="card-image-deals rounded">
@@ -84,9 +94,10 @@ class Deals extends React.Component{
                   </div>
                 </CardBody>
             </Card>
+            </Link>
           </Col>
       )
-        if ((idx+1)%3===0) {columns.push(<Row key={idx}></Row>)}
+        if ((idx+1)%3===0) {columns.push(<Row key={idx} id={idx+1}></Row>)}
       })
     return (
       <div className="">
