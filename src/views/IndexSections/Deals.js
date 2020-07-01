@@ -19,21 +19,23 @@ class Deals extends React.Component{
   }
 
   getDeals = () => {
-    axios.get(`https://3eg3r872u3.execute-api.eu-west-2.amazonaws.com/staging/getalldeals?limit=${this.state.limit}&offset=0`)
+    return new Promise((resolve, reject) => {
+      axios.get(`https://3eg3r872u3.execute-api.eu-west-2.amazonaws.com/staging/getalldeals?limit=${this.state.limit}&offset=0`)
         .then(res => {
           const itemInfo = res.data
           console.log(itemInfo)
           this.setState({items: itemInfo, loading: false})
+          resolve('Data Fetched')
+        })
       })
   }
 
   getLength = () => {
     // add category and manufacturer to this url once setup
     axios.get(`https://3eg3r872u3.execute-api.eu-west-2.amazonaws.com/staging/getalldeals?getLength=true`)
-        .then(res => {
-          const dealsLength = res.data
-          console.log(dealsLength)
-          this.setState({dealLength: dealsLength})
+      .then(res => {
+        const dealsLength = res.data
+        this.setState({dealLength: dealsLength})
       })
   }
 
@@ -48,8 +50,9 @@ class Deals extends React.Component{
     this.setState({
       limit: this.state.limit + this.state.counter
     }, () => {
-      this.getDeals()
-      this.scrollToRow()
+      this.getDeals().then(data => {
+        this.scrollToRow()
+      })
     })
   }
 
