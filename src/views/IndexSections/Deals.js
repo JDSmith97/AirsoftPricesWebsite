@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 // reactstrap components
-import { Button, Container, Row, Col, Card, CardBody, CardHeader } from "reactstrap";
+import { Button, Container, Row, Col, Card, CardBody, CardHeader, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
 import Loader from "react-loader-spinner";
 import axios from "axios";
 import './../../assets/scss/dealCard.scss';
@@ -15,34 +15,101 @@ class Deals extends React.Component{
     loading: true,
     limit: 15,
     counter: 15,
-    toggleFilters: false
+    refresh: false,
+    dealLength: 0,
+    categories: [],
+    manufacturers: [],
+    toggleFilters: false,
+    toggleCategoryDropdownBtn: false,
+    toggleManufacturerDropdownBtn: false,
+    selectedCategory: null,
+    selectedManufacturer: null
   }
 
-  getDeals = () => {
+  getDeals = (category, manufacturer) => {
+
     return new Promise((resolve, reject) => {
-      axios.get(`https://3eg3r872u3.execute-api.eu-west-2.amazonaws.com/staging/getalldeals?limit=${this.state.limit}&offset=0`)
-        .then(res => {
+      axios.get("https://3eg3r872u3.execute-api.eu-west-2.amazonaws.com/staging/getalldeals", {
+        params: {
+          limit: this.state.limit,
+          offset: 0,
+          category: category,
+          manufacturer: manufacturer
+        }
+      }).then(res => {
           const itemInfo = res.data
-          console.log(itemInfo)
-          this.setState({items: itemInfo, loading: false})
+          this.setState({items: itemInfo})
           resolve('Data Fetched')
         })
-      })
+    })
   }
 
-  getLength = () => {
-    // add category and manufacturer to this url once setup
-    axios.get(`https://3eg3r872u3.execute-api.eu-west-2.amazonaws.com/staging/getalldeals?getLength=true`)
+  getLength = (category, manufacturer) => {
+    axios.get(`https://3eg3r872u3.execute-api.eu-west-2.amazonaws.com/staging/getalldeals`, {
+      params: {
+        getLength: true,
+        category: category,
+        manufacturer: manufacturer
+      }
+    })
       .then(res => {
         const dealsLength = res.data
         this.setState({dealLength: dealsLength})
       })
   }
 
+  getCategoryFilters = () => {
+    return new Promise((resolve, reject) => {
+      axios.get("https://3eg3r872u3.execute-api.eu-west-2.amazonaws.com/staging/getdetails", {
+        params: {
+          allCategories: true
+        }
+      }).then(res => {
+          const categoryFilters = res.data
+          this.setState({categories: categoryFilters})
+          resolve('Data Fetched')
+        })
+        
+    })
+  }
+
+  getManufacturerFilters = () => {
+    return new Promise((resolve, reject) => {
+      axios.get("https://3eg3r872u3.execute-api.eu-west-2.amazonaws.com/staging/getdetails", {
+        params: {
+          allManufacturers: true
+        }
+      }).then(res => {
+          const manufacturerFilters = res.data
+          this.setState({manufacturers: manufacturerFilters, loading: false})
+          resolve('Data Fetched')
+        })
+        
+    })
+  }
+
+  filterCategories = (category) => {
+    this.setState({selectedCategory: category})
+    this.getDeals(category, this.state.selectedManufacturer).then(data => {
+      this.getLength(category, this.state.selectedManufacturer)
+      this.setState({refresh: true})
+    })
+  }
+
+  filterManufacturers = (manufacturer) => {
+    this.setState({selectedManufacturer: manufacturer})
+    this.getDeals(this.state.selectedCategory, manufacturer).then(data => {
+      this.getLength(this.state.selectedCategory, manufacturer)
+      this.setState({refresh: true})
+    })
+  }
+
   componentDidMount() {
     this.setState({ loading: true }, () => {
       this.getDeals()
       this.getLength()
+      this.getCategoryFilters()
+      this.getManufacturerFilters()
     })
   }
 
@@ -60,7 +127,18 @@ class Deals extends React.Component{
     this.setState({
       toggleFilters: !this.state.toggleFilters
     })
-    console.log(this.state.toggleFilters)
+  }
+
+  toggleCategoryDropdownBtn = () => {
+    this.setState({
+      toggleCategoryDropdownBtn: !this.state.toggleCategoryDropdownBtn
+    })
+  }
+
+  toggleManufacturerDropdownBtn = () => {
+    this.setState({
+      toggleManufacturerDropdownBtn: !this.state.toggleManufacturerDropdownBtn
+    })
   }
 
   scrollToRow = () => {
@@ -74,10 +152,17 @@ class Deals extends React.Component{
   };
 
   render() {
-      let columns=[];
+      let categoryOptions = []
+      let manufacturerOptions = []
+      let columns = []
+
+      if(this.state.refresh) {
+        columns = []
+      }
+      
       this.state.items.forEach((item,idx) => {
         columns.push(
-          <Col sm="4" key={`item ${item.item_id}`}>
+          <Col sm="4" key={`{${item.store} ${item.item_id}`}>
             <Link to={`item/${item.item_id}`} onClick={this.scrollToTop}>
             <Card className="py-3 card-deals">
                 <CardHeader>
@@ -93,7 +178,7 @@ class Deals extends React.Component{
                     <h5 className="font-large text-warning"><strong>{item.item_price}</strong></h5>
                   </div>
                   <div className="h-25">
-                  <p><strong>{item.item_discount_currency}</strong> savings!</p>
+                  <p><strong className="font-weight-bold">{item.item_discount_currency}</strong> savings!</p>
                   </div>
                 </CardBody>
             </Card>
@@ -101,6 +186,18 @@ class Deals extends React.Component{
           </Col>
       )
         if ((idx+1)%3===0) {columns.push(<Row key={idx} id={idx+1}></Row>)}
+      })
+
+      this.state.categories.forEach((category) => {
+        categoryOptions.push(
+          <DropdownItem key={category} onClick={() => this.filterCategories(category)}>{category}</DropdownItem>
+        )
+      })
+
+      this.state.manufacturers.forEach((manufacturer) => {
+        manufacturerOptions.push(
+          <DropdownItem key={manufacturer} onClick={() => this.filterManufacturers(manufacturer)}>{manufacturer}</DropdownItem>
+        )
       })
     return (
       <div className="">
@@ -125,7 +222,6 @@ class Deals extends React.Component{
           src={require("assets/img/path4.png")}
         />
         <img
-          alt="..."
           className="waves"
           src={require("assets/img/waves.png")}
         />
@@ -154,6 +250,22 @@ class Deals extends React.Component{
                     <Row>
                       <div className="border-primary">
                         <p>Populate filters</p>
+                        <ButtonDropdown isOpen={this.state.toggleCategoryDropdownBtn} toggle={this.toggleCategoryDropdownBtn}>
+                          <DropdownToggle caret>
+                            Product Type
+                          </DropdownToggle>
+                          <DropdownMenu>
+                            {categoryOptions}
+                          </DropdownMenu>
+                        </ButtonDropdown>
+                        <ButtonDropdown isOpen={this.state.toggleManufacturerDropdownBtn} toggle={this.toggleManufacturerDropdownBtn}>
+                          <DropdownToggle caret>
+                            Manufacturer
+                          </DropdownToggle>
+                          <DropdownMenu>
+                            {manufacturerOptions}
+                          </DropdownMenu>
+                        </ButtonDropdown>
                       </div>
                     </Row>
                   ) : (

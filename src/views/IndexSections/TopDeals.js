@@ -36,7 +36,6 @@ class TopDeals extends React.Component {
       axios.get(`https://3eg3r872u3.execute-api.eu-west-2.amazonaws.com/staging/getbestdeals`)
         .then(res => {
           const itemInfo = res.data.body
-          console.log(itemInfo)
           this.setState({item: itemInfo, loading: false})
       })
     })
@@ -49,7 +48,6 @@ class TopDeals extends React.Component {
   render() {
     return (
       <div className="section section-examples" data-background-color="black">
-        {/* <img alt="..." className="path" src={require("assets/img/path1.png")} /> */}
         <div className="space-50" />
         <Container className="text-center">
           <h2 className="title">
@@ -185,12 +183,11 @@ class TopDeals extends React.Component {
             <Col sm="4">
               <Link to="deals" onClick={this.scrollToTop}>
                 <Button
-                    className="d-lg-block"
+                    className="d-lg-block w-100"
                     color="info"
                     data-placement="right"
                     type="button"
                     target="_blank"
-                    href="deals"
                   >
                     View All Deals!
                 </Button>

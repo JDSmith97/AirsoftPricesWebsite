@@ -64,7 +64,6 @@ class PageHeader extends React.Component {
   componentDidMount() {
     axios.get(`https://3eg3r872u3.execute-api.eu-west-2.amazonaws.com/staging/getallitems?offset=0`)
       .then(res => {
-        console.log(res.data)
         const itemInfo = res.data;
         this.setState({ allItems: itemInfo });
       })
