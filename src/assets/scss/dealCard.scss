@@ -23,6 +23,37 @@
   justify-content: center;
 }
 
+.filter-chip {
+  background: #fd5d93;
+  background-image: linear-gradient(to bottom left, #fd5d93, #ec250d, #fd5d93);
+  background-size: 210% 210%;
+  background-position: top right;
+  background-color: #fd5d93;
+  font-family: "Poppins", sans-serif !important;
+  color: #ffffff !important;
+
+  .MuiChip-deleteIcon {
+    color: #ffffff !important;
+  }
+}
+
+.dropdown-menu {
+  width: inherit;
+  transform: translate3d(0px, 52px, 0px) !important;
+}
+
+.dropdown-item {
+  white-space: pre-line;
+}
+
+.dropdown-content {
+  width: 10rem;
+}
+
+.dropdown-toggle {
+  width: inherit;
+}
+
 @media (max-width: 1200px) {
   h4 {
     font-size: 0.9rem;

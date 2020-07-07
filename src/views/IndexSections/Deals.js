@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 // reactstrap components
 import { Button, Container, Row, Col, Card, CardBody, CardHeader, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
+import Chip from '@material-ui/core/Chip';
 import Loader from "react-loader-spinner";
 import axios from "axios";
 import './../../assets/scss/dealCard.scss';
@@ -38,6 +39,7 @@ class Deals extends React.Component{
         }
       }).then(res => {
           const itemInfo = res.data
+          console.log(itemInfo)
           this.setState({items: itemInfo})
           resolve('Data Fetched')
         })
@@ -110,6 +112,22 @@ class Deals extends React.Component{
       this.getLength()
       this.getCategoryFilters()
       this.getManufacturerFilters()
+    })
+  }
+
+  clearCategoryFilter = () => {
+    this.setState({selectedCategory: null})
+    this.getDeals(null, this.state.selectedManufacturer).then(data => {
+      this.getLength(null, this.state.selectedManufacturer)
+      this.setState({refresh: true})
+    })
+  }
+
+  clearManufacturerFilter = () => {
+    this.setState({selectedManufacturer: null})
+    this.getDeals(this.state.selectedCategory, null).then(data => {
+      this.getLength(this.state.selectedCategory, null)
+      this.setState({refresh: true})
     })
   }
 
@@ -241,37 +259,58 @@ class Deals extends React.Component{
             <Container className="text-center">
               <Row>
                 <div className="w-100 px-3">
-                  <Row>
-                    <div className="w-100 mb-3 pr-3">
-                      <Button color="info" className="float-right text-uppercase" onClick={this.toggle}>Filters</Button>
-                    </div>
-                  </Row>
-                  {this.state.toggleFilters ? (
                     <Row>
-                      <div className="border-primary">
-                        <p>Populate filters</p>
-                        <ButtonDropdown isOpen={this.state.toggleCategoryDropdownBtn} toggle={this.toggleCategoryDropdownBtn}>
-                          <DropdownToggle caret>
-                            Product Type
-                          </DropdownToggle>
-                          <DropdownMenu>
-                            {categoryOptions}
-                          </DropdownMenu>
-                        </ButtonDropdown>
-                        <ButtonDropdown isOpen={this.state.toggleManufacturerDropdownBtn} toggle={this.toggleManufacturerDropdownBtn}>
-                          <DropdownToggle caret>
-                            Manufacturer
-                          </DropdownToggle>
-                          <DropdownMenu>
-                            {manufacturerOptions}
-                          </DropdownMenu>
-                        </ButtonDropdown>
-                      </div>
+                      <Col>
+                        <div className="border-primary mb-4 float-left">
+                          <ButtonDropdown isOpen={this.state.toggleCategoryDropdownBtn} toggle={this.toggleCategoryDropdownBtn}>
+                            <div className="dropdown-content">
+                              <DropdownToggle caret className="px-3" color="info">
+                                Product Type
+                              </DropdownToggle>
+                              <DropdownMenu>
+                                {categoryOptions}
+                              </DropdownMenu>
+                            </div>
+                          </ButtonDropdown>
+                          <ButtonDropdown className="ml-3" isOpen={this.state.toggleManufacturerDropdownBtn} toggle={this.toggleManufacturerDropdownBtn}>
+                            <div className="dropdown-content">
+                            <DropdownToggle caret className="px-3" color="info">
+                              Manufacturer
+                            </DropdownToggle>
+                            <DropdownMenu>
+                              {manufacturerOptions}
+                            </DropdownMenu>
+                            </div>
+                          </ButtonDropdown>
+                        </div>
+                      </Col>
+                      <Col>
+                        <div className="w-100">
+                          {this.state.selectedManufacturer ? (
+                            <div className="py-2 float-right">
+                            <Chip
+                              className="filter-chip"
+                              label={this.state.selectedManufacturer}
+                              onDelete={this.clearManufacturerFilter}
+                            />
+                          </div>
+                          ) : (
+                            null
+                          )}
+                          {this.state.selectedCategory ? (
+                            <div className="py-2 float-right">
+                              <Chip
+                                className="filter-chip mx-3"
+                                label={this.state.selectedCategory}
+                                onDelete={this.clearCategoryFilter}
+                              />
+                            </div>
+                          ) : (
+                            null
+                          )}
+                        </div>
+                      </Col>
                     </Row>
-                  ) : (
-                  <div>
-                  </div>
-                  )}
                 </div>
               </Row>
               <Row>
