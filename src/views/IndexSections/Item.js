@@ -9,7 +9,8 @@ class Item extends React.Component {
   state = {
     item: [],
     itemPrices: [],
-    loading: true
+    loading: true,
+    currency: localStorage.getItem('currency')
   }
 
   componentDidMount() {
@@ -56,7 +57,12 @@ class Item extends React.Component {
         itemPrices.push(
           <tr key={store.store}>
             <th scope="row">{storeNames[store.store]}</th>
-            <td>{store.item_price_currency}</td>
+            {this.state.currency === "true" ?
+            (
+              <td>{store.item_price_eur}</td>
+            ) : (
+              <td>{store.item_price_gbp}</td>
+            )}
             <td>{store.item_stock}</td>
             <td>
               <Button

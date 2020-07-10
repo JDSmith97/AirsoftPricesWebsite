@@ -31,15 +31,18 @@ import {
   DropdownMenu,
   DropdownToggle,
   DropdownItem,
-  UncontrolledDropdown
+  UncontrolledDropdown,
+  CustomInput
 } from "reactstrap";
+import Switch from "react-bootstrap-switch";
 
 class IndexNavbar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       collapseOpen: false,
-      color: "navbar-transparent"
+      color: "navbar-transparent",
+      currency: localStorage.getItem('currency')
     };
   }
 
@@ -101,8 +104,10 @@ class IndexNavbar extends React.Component {
     window.scrollTo(0, 0)
   }
 
-  changeLocal = () => {
-    localStorage.setItem('test', "hi")
+  changeCurrency = () => {
+    let currency = JSON.parse(this.state.currency)
+
+    localStorage.setItem('currency', !currency)
     window.location.reload(false);
   }
 
@@ -231,13 +236,11 @@ class IndexNavbar extends React.Component {
                 </div> 
               </NavItem>
               <NavItem>
-                <Button
-                    className="nav-link d-none d-lg-block"
-                    color="default"
-                    onClick={this.changeLocal}
-                  >
-                    Test
-                </Button>
+              <div className="nav-link mt-2 mt-md-2 mt-lg-0">
+                <strong className="pl-2 pr-2">GBP</strong>
+                <Switch value={JSON.parse(this.state.currency)} onChange={() => this.changeCurrency()} onText="€" offText="£"/>
+                <strong className="pl-2">EUR</strong>
+              </div>
               </NavItem>
             </Nav>
           </Collapse>
