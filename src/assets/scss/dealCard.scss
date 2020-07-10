@@ -37,6 +37,18 @@
   }
 }
 
+.chip-div {
+  @media (max-width: 576px) {
+    display: inline-block;
+  }
+}
+.chip-col {
+  @media (max-width: 576px) {
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
+
 .dropdown-menu {
   width: inherit;
   transform: translate3d(0px, 52px, 0px) !important;

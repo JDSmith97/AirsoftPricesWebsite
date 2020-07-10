@@ -28,7 +28,8 @@ class TopDeals extends React.Component {
   state = {
     item: [],
     itemPrices: [],
-    loading: true
+    loading: true,
+    test: localStorage.getItem('test')
   }
 
   componentDidMount() {
@@ -192,6 +193,11 @@ class TopDeals extends React.Component {
                     View All Deals!
                 </Button>
               </Link>
+              {this.state.test ? (
+                <p>{this.state.test}</p>
+              ) : ( 
+                null
+              )}
             </Col>
             <Col sm="4"></Col>
           </Row>

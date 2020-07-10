@@ -42,12 +42,15 @@ class ComponentsNavbar extends React.Component {
       color: "navbar-transparent"
     };
   }
+
   componentDidMount() {
     window.addEventListener("scroll", this.changeColor);
   }
+
   componentWillUnmount() {
     window.removeEventListener("scroll", this.changeColor);
   }
+
   changeColor = () => {
     if (
       document.documentElement.scrollTop > 99 ||
@@ -65,22 +68,26 @@ class ComponentsNavbar extends React.Component {
       });
     }
   };
+
   toggleCollapse = () => {
     document.documentElement.classList.toggle("nav-open");
     this.setState({
       collapseOpen: !this.state.collapseOpen
     });
   };
+
   onCollapseExiting = () => {
     this.setState({
       collapseOut: "collapsing-out"
     });
   };
+
   onCollapseExited = () => {
     this.setState({
       collapseOut: ""
     });
   };
+
   scrollToAddAProduct = () => {
     document
       .getElementById("add-a-product")
@@ -90,6 +97,11 @@ class ComponentsNavbar extends React.Component {
   scrollToTop = () => {
     window.scrollTo(0, 0)
   };
+
+  changeLocal = () => {
+    localStorage.setItem('test', "hi")
+    window.location.reload(false);
+  }
 
   render() {
     return (
@@ -211,6 +223,13 @@ class ComponentsNavbar extends React.Component {
                   <i className="tim-icons icon-bulb-63" /> Want a product added?
                 </Button>
               </NavItem>
+              <Button
+                  className="nav-link d-none d-lg-block"
+                  color="default"
+                  onClick={this.changeLocal}
+                >
+                  Test
+                </Button>
             </Nav>
           </Collapse>
         </Container>

@@ -27,7 +27,7 @@ class Item extends React.Component {
 
     const urls = {
       "patrol_base": "https://www.patrolbase.co.uk/",
-      "redwolf_airsoft": "http://uk.redwolfairsoft.com/",
+      "redwolf_airsoft": "https://uk.redwolfairsoft.com/",
       "zero_one_airsoft": "https://www.zerooneairsoft.com/",
       "airsoft_world":   "https://www.airsoftworld.net/",
       "land_warrior_airsoft": "https://www.landwarriorairsoft.com/",

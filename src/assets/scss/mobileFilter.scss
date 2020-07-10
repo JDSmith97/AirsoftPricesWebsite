@@ -1,0 +1,21 @@
+.filterCategory {
+  color: #000 !important;
+
+  &.btn {
+    &.btn-link {
+      &:hover {
+        color: #000 !important;
+      }
+      font-size: 16px;
+    }
+
+  }
+
+  svg {
+   margin-right: 6px;
+  }
+}
+
+// .filterCategory .btn-link:hover {
+//   color: #000 !important;
+// }

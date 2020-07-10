@@ -7,6 +7,7 @@ import Loader from "react-loader-spinner";
 import axios from "axios";
 import './../../assets/scss/dealCard.scss';
 import './../../assets/scss/blobs.scss';
+import FilterDrawer from './../../components/Menu/Filter.js'
 
 class Deals extends React.Component{
   
@@ -28,7 +29,6 @@ class Deals extends React.Component{
   }
 
   getDeals = (category, manufacturer) => {
-
     return new Promise((resolve, reject) => {
       axios.get("https://3eg3r872u3.execute-api.eu-west-2.amazonaws.com/staging/getalldeals", {
         params: {
@@ -91,10 +91,9 @@ class Deals extends React.Component{
   }
 
   filterCategories = (category) => {
-    this.setState({selectedCategory: category})
     this.getDeals(category, this.state.selectedManufacturer).then(data => {
       this.getLength(category, this.state.selectedManufacturer)
-      this.setState({refresh: true})
+      this.setState({refresh: true, selectedCategory: category})
     })
   }
 
@@ -177,12 +176,12 @@ class Deals extends React.Component{
       if(this.state.refresh) {
         columns = []
       }
-      
+
       this.state.items.forEach((item,idx) => {
         columns.push(
-          <Col sm="4" key={`{${item.store} ${item.item_id}`}>
+          <Col sm="12" md="6" lg="4" key={`{${item.store} ${item.item_id}`} id={idx}>
             <Link to={`item/${item.item_id}`} onClick={this.scrollToTop}>
-            <Card className="py-3 card-deals">
+              <Card className="py-3 card-deals">
                 <CardHeader>
                   <div className="card-image-deals rounded">
                     <img className="img-center img-fluid" alt="Image of product" src={item.item_image}></img>
@@ -199,11 +198,10 @@ class Deals extends React.Component{
                   <p><strong className="font-weight-bold">{item.item_discount_currency}</strong> savings!</p>
                   </div>
                 </CardBody>
-            </Card>
+              </Card>
             </Link>
           </Col>
-      )
-        if ((idx+1)%3===0) {columns.push(<Row key={idx} id={idx+1}></Row>)}
+        )
       })
 
       this.state.categories.forEach((category) => {
@@ -260,7 +258,7 @@ class Deals extends React.Component{
               <Row>
                 <div className="w-100 px-3">
                     <Row>
-                      <Col>
+                      <Col className="d-none d-lg-block d-xl-block">
                         <div className="border-primary mb-4 float-left">
                           <ButtonDropdown isOpen={this.state.toggleCategoryDropdownBtn} toggle={this.toggleCategoryDropdownBtn}>
                             <div className="dropdown-content">
@@ -285,30 +283,39 @@ class Deals extends React.Component{
                         </div>
                       </Col>
                       <Col>
-                        <div className="w-100">
-                          {this.state.selectedManufacturer ? (
-                            <div className="py-2 float-right">
-                            <Chip
-                              className="filter-chip"
-                              label={this.state.selectedManufacturer}
-                              onDelete={this.clearManufacturerFilter}
-                            />
-                          </div>
-                          ) : (
-                            null
-                          )}
-                          {this.state.selectedCategory ? (
-                            <div className="py-2 float-right">
-                              <Chip
-                                className="filter-chip mx-3"
-                                label={this.state.selectedCategory}
-                                onDelete={this.clearCategoryFilter}
-                              />
+                        <Row className="mb-4">
+                          <Col xs="10" md="10" lg="12" className="w-100 chip-col">
+                            <div className="w-100 text-left">
+                              {this.state.selectedManufacturer ? (
+                                <div className="pb-2 float-lg-right float-md-left chip-div">
+                                <Chip
+                                  className="filter-chip"
+                                  label={this.state.selectedManufacturer}
+                                  onDelete={this.clearManufacturerFilter}
+                                />
+                              </div>
+                              ) : (
+                                null
+                              )}
+                              {this.state.selectedCategory ? (
+                                <div className="pb-2 float-lg-right float-md-left chip-div">
+                                  <Chip
+                                    className="filter-chip mx-3"
+                                    label={this.state.selectedCategory}
+                                    onDelete={this.clearCategoryFilter}
+                                  />
+                                </div>
+                              ) : (
+                                null
+                              )}
                             </div>
-                          ) : (
-                            null
-                          )}
-                        </div>
+                          </Col>
+                          <Col xs="2" md="2" className="d-block d-sm-block d-md-block d-lg-none">
+                            <div className="w-100 border-primary float-left">
+                              <FilterDrawer categoryOptions={this.state.categories} manufacturerOptions={this.state.manufacturers} filterCategories={this.filterCategories} filterManufacturers={this.filterManufacturers}/>
+                            </div>
+                          </Col>
+                        </Row>
                       </Col>
                     </Row>
                 </div>
