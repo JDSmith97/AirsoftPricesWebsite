@@ -18,12 +18,12 @@
 import React from "react";
 
 // core components
-import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import PageHeader from "components/PageHeader/PageHeader.js";
 import Footer from "components/Footer/Footer.js";
 
 import TopDeals from "views/IndexSections/TopDeals.js";
 import AddAProduct from "views/IndexSections/AddAProduct.js";
+import IndexNavbar from "components/Navbars/IndexNavbar";
 
 class Index extends React.Component {
   componentDidMount() {

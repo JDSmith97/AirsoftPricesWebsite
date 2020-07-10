@@ -126,6 +126,7 @@ class PageHeader extends React.Component {
               renderInput={(params) => 
                 <TextField {...params} label="Enter a product" margin="normal" />
               }
+              ListboxProps={{ style: { maxHeight: "15rem" }, position: "bottom-start" }}
             />
           </div>
         </Container>

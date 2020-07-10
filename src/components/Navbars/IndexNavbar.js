@@ -21,10 +21,6 @@ import { Link } from "react-router-dom";
 import {
   Button,
   Collapse,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  UncontrolledDropdown,
   NavbarBrand,
   Navbar,
   NavItem,
@@ -32,9 +28,13 @@ import {
   Container,
   Row,
   Col,
+  DropdownMenu,
+  DropdownToggle,
+  DropdownItem,
+  UncontrolledDropdown
 } from "reactstrap";
 
-class ComponentsNavbar extends React.Component {
+class IndexNavbar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -58,45 +58,48 @@ class ComponentsNavbar extends React.Component {
     ) {
       this.setState({
         color: "bg-info"
-      });
+      })
     } else if (
       document.documentElement.scrollTop < 100 ||
       document.body.scrollTop < 100
     ) {
       this.setState({
         color: "navbar-transparent"
-      });
+      })
     }
-  };
+  }
 
   toggleCollapse = () => {
     document.documentElement.classList.toggle("nav-open");
     this.setState({
       collapseOpen: !this.state.collapseOpen
-    });
-  };
+    })
+  }
 
   onCollapseExiting = () => {
     this.setState({
       collapseOut: "collapsing-out"
-    });
-  };
+    })
+  }
 
   onCollapseExited = () => {
     this.setState({
       collapseOut: ""
-    });
-  };
+    })
+  }
 
   scrollToAddAProduct = () => {
     document
       .getElementById("add-a-product")
-      .scrollIntoView({ behavior: "smooth" });
-  };
+      .scrollIntoView({ behavior: "smooth", block: 'center' });
+    this.setState({
+      collapseOpen: false
+    })
+  }
 
   scrollToTop = () => {
     window.scrollTo(0, 0)
-  };
+  }
 
   changeLocal = () => {
     localStorage.setItem('test', "hi")
@@ -111,15 +114,7 @@ class ComponentsNavbar extends React.Component {
         expand="lg"
       >
         <Container>
-          <div id="navbar" className="navbar-translate">
-            <NavbarBrand
-              to="/"
-              tag={Link}
-              id="navbar-brand"
-              onClick={this.scrollToTop}
-            >
-              <span>Airsoft Prices</span>
-            </NavbarBrand>
+          <div className="navbar-translate">
             <button
               aria-expanded={this.state.collapseOpen}
               className="navbar-toggler navbar-toggler"
@@ -129,6 +124,14 @@ class ComponentsNavbar extends React.Component {
               <span className="navbar-toggler-bar bar2" />
               <span className="navbar-toggler-bar bar3" />
             </button>
+            <NavbarBrand
+              to="/"
+              id="navbar-brand"
+              tag={Link}
+              onClick={this.scrollToTop}
+            >
+              Airsoft Prices
+            </NavbarBrand>
           </div>
           <Collapse
             className={"justify-content-end " + this.state.collapseOut}
@@ -140,7 +143,7 @@ class ComponentsNavbar extends React.Component {
             <div className="navbar-collapse-header">
               <Row>
                 <Col className="collapse-brand" xs="6">
-                  <a href="#airsoftprices" onClick={e => e.preventDefault()}>
+                  <a href="#pablo" onClick={e => e.preventDefault()}>
                     Airsoft Prices
                   </a>
                 </Col>
@@ -222,14 +225,20 @@ class ComponentsNavbar extends React.Component {
                 >
                   <i className="tim-icons icon-bulb-63" /> Want a product added?
                 </Button>
+                <div className="nav-link mt-1 d-lg-none d-xl-none" onClick={this.scrollToAddAProduct}>
+                  <i className="fa d-lg-none d-xl-none pl-1" />
+                  Want a product added? <i className="tim-icons icon-bulb-63 pl-2"/> 
+                </div> 
               </NavItem>
-              <Button
-                  className="nav-link d-none d-lg-block"
-                  color="default"
-                  onClick={this.changeLocal}
-                >
-                  Test
+              <NavItem>
+                <Button
+                    className="nav-link d-none d-lg-block"
+                    color="default"
+                    onClick={this.changeLocal}
+                  >
+                    Test
                 </Button>
+              </NavItem>
             </Nav>
           </Collapse>
         </Container>
@@ -238,4 +247,4 @@ class ComponentsNavbar extends React.Component {
   }
 }
 
-export default ComponentsNavbar;
+export default IndexNavbar;

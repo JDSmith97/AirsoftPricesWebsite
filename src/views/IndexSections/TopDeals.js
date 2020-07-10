@@ -55,7 +55,7 @@ class TopDeals extends React.Component {
             Top Deals Right Now!
           </h2>
           <Row>
-            <Col sm="4">
+            <Col sm="12" md="6" lg="4">
             {this.state.loading ? (
                 <div className="content-center brand">
                 <Card>
@@ -96,7 +96,7 @@ class TopDeals extends React.Component {
               </Link>
             )}
             </Col>
-            <Col sm="4">
+            <Col sm="12" md="6" lg="4">
               {this.state.loading ? (
                   <div className="content-center brand">
                   <Card>
@@ -137,7 +137,7 @@ class TopDeals extends React.Component {
                 </Link>
               )}
             </Col>
-            <Col sm="4">
+            <Col sm="12" md="6" lg="4" xl="4" className="d-block d-sm-block d-md-none d-lg-block d-xl-block">
               {this.state.loading ? (
                   <div className="content-center brand">
                   <Card>
