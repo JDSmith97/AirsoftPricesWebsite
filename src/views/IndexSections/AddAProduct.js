@@ -73,7 +73,7 @@ class AddAProduct extends React.Component {
                   </Col>
                 </Row>
                 <Button
-                  className="btn-round float-right"
+                  className="float-right"
                   color="info"
                   data-placement="right"
                   id="tooltip341148792"

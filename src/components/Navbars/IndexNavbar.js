@@ -163,7 +163,7 @@ class IndexNavbar extends React.Component {
                 </Col>
               </Row>
             </div>
-            <Nav navbar>
+            <Nav navbar className="mt-2">
               <UncontrolledDropdown nav>
                 <DropdownToggle
                   caret

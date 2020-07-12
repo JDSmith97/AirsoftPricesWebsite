@@ -25,7 +25,8 @@ class Deals extends React.Component{
     toggleCategoryDropdownBtn: false,
     toggleManufacturerDropdownBtn: false,
     selectedCategory: null,
-    selectedManufacturer: null
+    selectedManufacturer: null,
+    currency: localStorage.getItem('currency')
   }
 
   getDeals = (category, manufacturer) => {
@@ -192,10 +193,18 @@ class Deals extends React.Component{
                     <h4 className="">{item.item_name}</h4>
                   </div>
                   <div className="h-25">
-                    <h5 className="font-large text-warning"><strong>{item.item_price}</strong></h5>
+                    {this.state.currency === "true" ? (
+                      <h5 className="font-large text-warning"><strong>{item.item_price_eur}</strong></h5>
+                    ) : (
+                      <h5 className="font-large text-warning"><strong>{item.item_price_gbp}</strong></h5>
+                    )}
                   </div>
                   <div className="h-25">
-                  <p><strong className="font-weight-bold">{item.item_discount_currency}</strong> savings!</p>
+                    {this.state.currency === "true" ? (
+                      <p><strong>{item.item_discount_eur}</strong> savings!</p>
+                    ) : (
+                      <p><strong>{item.item_discount_gbp}</strong> savings!</p>
+                    )}
                   </div>
                 </CardBody>
               </Card>

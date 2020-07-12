@@ -29,7 +29,7 @@ class TopDeals extends React.Component {
     item: [],
     itemPrices: [],
     loading: true,
-    test: localStorage.getItem('test')
+    currency: localStorage.getItem('currency')
   }
 
   componentDidMount() {
@@ -85,10 +85,18 @@ class TopDeals extends React.Component {
                         <h4 className="">{this.state.item[0].item_name}</h4>
                       </div>
                       <div className="h-25">
-                        <h5 className="font-large text-warning"><strong>{this.state.item[0].item_price}</strong></h5>
+                        {this.state.currency === "true" ? (
+                          <h5 className="font-large text-warning"><strong>{this.state.item[0].item_price_eur}</strong></h5>
+                        ) : (
+                          <h5 className="font-large text-warning"><strong>{this.state.item[0].item_price_gbp}</strong></h5>
+                        )}
                       </div>
                       <div className="h-25">
-                      <p><strong>{this.state.item[0].item_discount_currency}</strong> savings!</p>
+                        {this.state.currency === "true" ? (
+                          <p><strong>{this.state.item[0].item_discount_eur}</strong> savings!</p>
+                        ) : (
+                          <p><strong>{this.state.item[0].item_discount_gbp}</strong> savings!</p>
+                        )}
                       </div>
                     </CardBody>
                   </Card>
@@ -126,10 +134,18 @@ class TopDeals extends React.Component {
                           <h4 className="">{this.state.item[1].item_name}</h4>
                         </div>
                         <div className="h-25">
-                          <h5 className="font-large text-warning"><strong>{this.state.item[1].item_price}</strong></h5>
+                          {this.state.currency === "true" ? (
+                            <h5 className="font-large text-warning"><strong>{this.state.item[1].item_price_eur}</strong></h5>
+                          ) : (
+                            <h5 className="font-large text-warning"><strong>{this.state.item[1].item_price_gbp}</strong></h5>
+                          )}
                         </div>
                         <div className="h-25">
-                        <p><strong>{this.state.item[1].item_discount_currency}</strong> savings!</p>
+                          {this.state.currency === "true" ? (
+                            <p><strong>{this.state.item[1].item_discount_eur}</strong> savings!</p>
+                          ) : (
+                            <p><strong>{this.state.item[1].item_discount_gbp}</strong> savings!</p>
+                          )}
                         </div>
                       </CardBody>
                     </Card>
@@ -167,10 +183,18 @@ class TopDeals extends React.Component {
                           <h4 className="">{this.state.item[2].item_name}</h4>
                         </div>
                         <div className="h-25">
-                          <h5 className="font-large text-warning"><strong>{this.state.item[2].item_price}</strong></h5>
+                        {this.state.currency === "true" ? (
+                          <h5 className="font-large text-warning"><strong>{this.state.item[2].item_price_eur}</strong></h5>
+                        ) : (
+                          <h5 className="font-large text-warning"><strong>{this.state.item[2].item_price_gbp}</strong></h5>
+                        )}
                         </div>
                         <div className="h-25">
-                        <p><strong>{this.state.item[2].item_discount_currency}</strong> savings!</p>
+                          {this.state.currency === "true" ? (
+                            <p><strong>{this.state.item[2].item_discount_eur}</strong> savings!</p>
+                          ) : (
+                            <p><strong>{this.state.item[2].item_discount_gbp}</strong> savings!</p>
+                          )}
                         </div>
                       </CardBody>
                     </Card>
@@ -193,11 +217,6 @@ class TopDeals extends React.Component {
                     View All Deals!
                 </Button>
               </Link>
-              {this.state.test ? (
-                <p>{this.state.test}</p>
-              ) : ( 
-                null
-              )}
             </Col>
             <Col sm="4"></Col>
           </Row>
