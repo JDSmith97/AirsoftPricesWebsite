@@ -26,8 +26,7 @@ import "assets/demo/demo.css";
 import Index from "views/Index.js";
 import Item from "views/item/Index.js";
 import Deals from "views/deals/Index.js"
-import RegisterPage from "views/examples/RegisterPage.js";
-import ProfilePage from "views/examples/ProfilePage.js";
+import Category from "views/category/Index.js"
 
 ReactDOM.render(
   <BrowserRouter>
@@ -41,20 +40,12 @@ ReactDOM.render(
         path="/deals"
         render={props => <Deals {...props} />}
       />
-      {/* <Route
-        exact path="/item/:id"
-        component={Item}
-      /> */}
       <Route
-        path="/register-page"
-        render={props => <RegisterPage {...props} />}
-      />
-      <Route
-        path="/profile-page"
-        render={props => <ProfilePage {...props} />}
+        exact path="/categories/:category"
+        render={props => <Category {...props} />}
       />
       <Redirect from="/" to="/index" />
     </Switch>
   </BrowserRouter>,
   document.getElementById("root")
-);
+)

@@ -177,17 +177,23 @@ class IndexNavbar extends React.Component {
                   Airsoft Guns
                 </DropdownToggle>
                 <DropdownMenu className="dropdown-with-icons">
-                  <DropdownItem tag={Link} to="/toyko-marui">
+                  <DropdownItem tag={Link} to="/categories/Assault Rifle">
                     Assault Rifles
                   </DropdownItem>
-                  <DropdownItem tag={Link} to="/register-page">
-                    Register Page
+                  <DropdownItem tag={Link} to="/categories/Pistol">
+                    Pistols
                   </DropdownItem>
-                  <DropdownItem tag={Link} to="/landing-page">
-                    Landing Page
+                  <DropdownItem tag={Link} to="/categories/Shotgun">
+                    Shotguns
                   </DropdownItem>
-                  <DropdownItem tag={Link} to="/profile-page">
-                    Profile Page
+                  <DropdownItem tag={Link} to="/categories/Sniper Rifle">
+                    Sniper Rifles
+                  </DropdownItem>
+                  <DropdownItem tag={Link} to="/categories/Submachine Gun">
+                    Submachine Guns
+                  </DropdownItem>
+                  <DropdownItem tag={Link} to="/categories/Support Gun">
+                    Support Guns
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>

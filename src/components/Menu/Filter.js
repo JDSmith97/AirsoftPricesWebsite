@@ -77,24 +77,30 @@ class FilterDrawer extends React.Component {
         <div className="w-100">
           <CloseRoundedIcon className="float-right m-3" onClick={this.toggleFilterDrawer}/>
         </div>
-        <Button color="link" className="d-block w-100 text-left filterCategory pl-3" onClick={this.toggleCategories}>
-          Product Type
-          {this.state.isCategoriesOpen ? (
-            <KeyboardArrowUpRoundedIcon className="float-right"/>
-          ) : (
-            <KeyboardArrowDownRoundedIcon className="float-right"/>
-          )}
-        </Button>
-        <Collapse isOpen={this.state.isCategoriesOpen}>
-          <List>
-            {this.props.categoryOptions.map((category, index) => (
-              <ListItem button key={category} onClick={() => this.filterCategories(category)}>
-                <ListItemText primary={category} onClick={this.toggleFilterDrawer}/>
-              </ListItem>
-            ))}
-          </List>
-        </Collapse>
-        <Divider/>
+        {this.props.categoryOptions ? (
+          <React.Fragment>
+            <Button color="link" className="d-block w-100 text-left filterCategory pl-3" onClick={this.toggleCategories}>
+              Product Type
+              {this.state.isCategoriesOpen ? (
+                <KeyboardArrowUpRoundedIcon className="float-right"/>
+              ) : (
+                <KeyboardArrowDownRoundedIcon className="float-right"/>
+              )}
+            </Button>
+            <Collapse isOpen={this.state.isCategoriesOpen}>
+              <List>
+                {this.props.categoryOptions.map((category, index) => (
+                  <ListItem button key={category} onClick={() => this.filterCategories(category)}>
+                    <ListItemText primary={category} onClick={this.toggleFilterDrawer}/>
+                  </ListItem>
+                ))}
+              </List>
+            </Collapse>
+            <Divider/>
+          </React.Fragment>
+        ) : (
+          null
+        )}
         <Button color="link" className="d-block w-100 text-left filterCategory pl-3" onClick={this.toggleManufacturers}>
           Manufacturer
           {this.state.isManufacturersOpen ? (

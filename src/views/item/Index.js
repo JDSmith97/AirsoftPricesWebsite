@@ -17,7 +17,6 @@
 */
 import React from "react";
 
-// core components
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Item from "views/IndexSections/Item.js";
 import Footer from "components/Footer/Footer.js";

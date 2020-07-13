@@ -18,7 +18,7 @@
 import React from "react";
 
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
-import Deals from "views/IndexSections/Deals.js";
+import Category from "views/IndexSections/Category.js";
 import Footer from "components/Footer/Footer.js";
 import AddAProduct from "views/IndexSections/AddAProduct.js";
 
@@ -34,8 +34,8 @@ class Index extends React.Component {
       <>
         <IndexNavbar />
         <div className="wrapper">
+          <Category category={this.props.match.params.category}/>
           <div className="main">
-            <Deals/>
             <AddAProduct />
           </div>
           <Footer />
