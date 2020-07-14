@@ -19,6 +19,7 @@ class Deals extends React.Component{
     counter: 15,
     refresh: false,
     dealLength: 0,
+    category: this.props.category,
     categories: [],
     manufacturers: [],
     toggleFilters: false,
@@ -29,13 +30,20 @@ class Deals extends React.Component{
     currency: localStorage.getItem('currency')
   }
 
+  componentDidUpdate() {
+    const { category } = this.props
+    if(category != this.state.category){
+      window.location.reload(false)
+    }
+  }
+
   getDeals = (category, manufacturer) => {
     return new Promise((resolve, reject) => {
       axios.get("https://3eg3r872u3.execute-api.eu-west-2.amazonaws.com/staging/getallitems", {
         params: {
           limit: this.state.limit,
           offset: 0,
-          category: this.props.category,
+          category: this.state.category,
           manufacturer: manufacturer
         }
       }).then(res => {
@@ -51,7 +59,7 @@ class Deals extends React.Component{
     axios.get(`https://3eg3r872u3.execute-api.eu-west-2.amazonaws.com/staging/getallitems`, {
       params: {
         getLength: true,
-        category: this.props.category,
+        category: this.state.category,
         manufacturer: manufacturer
       }
     })
@@ -178,16 +186,14 @@ class Deals extends React.Component{
         columns = []
       }
 
-      console.log(this.state.items)
-
       this.state.items.forEach((item,idx) => {
         columns.push(
           <Col sm="12" md="6" lg="4" key={`{${item.store} ${item.item_id}`} id={idx}>
-            <Link to={`item/${item.item_id}`} onClick={this.scrollToTop}>
+            <Link to={`/item/${item.item_id}`} onClick={this.scrollToTop}>
               <Card className="py-3 card-deals">
                 <CardHeader>
                   <div className="card-image-deals rounded">
-                    <img className="img-center img-fluid" alt="Image of product" src={item.item_image}></img>
+                    <img className="img-center img-fluid" alt={item.item_name} src={item.item_image}></img>
                   </div>
                 </CardHeader>
                 <CardBody>
@@ -195,10 +201,18 @@ class Deals extends React.Component{
                     <h4 className="">{item.item_name}</h4>
                   </div>
                   <div className="h-25">
-                    {this.state.currency === "true" ? (
-                      <h5 className="font-large text-warning"><strong>{item.item_price_eur}</strong></h5>
+                    {item.item_discount > 0 ? (
+                      this.state.currency === "true" ? (
+                        <h5 className="font-large text-warning"><strong>{item.item_price_eur}</strong></h5>
+                      ) : (
+                        <h5 className="font-large text-warning"><strong>{item.item_price_gbp}</strong></h5>
+                      )
                     ) : (
-                      <h5 className="font-large text-warning"><strong>{item.item_price_gbp}</strong></h5>
+                      this.state.currency === "true" ? (
+                        <h5 className="font-large">{item.item_price_eur}</h5>
+                      ) : (
+                        <h5 className="font-large">{item.item_price_gbp}</h5>
+                      )
                     )}
                   </div>
                   <div className="h-25">
@@ -271,16 +285,6 @@ class Deals extends React.Component{
                     <Row>
                       <Col className="d-none d-lg-block d-xl-block">
                         <div className="border-primary mb-4 float-left">
-                          {/* <ButtonDropdown isOpen={this.state.toggleCategoryDropdownBtn} toggle={this.toggleCategoryDropdownBtn}>
-                            <div className="dropdown-content">
-                              <DropdownToggle caret className="px-3" color="info">
-                                Product Type
-                              </DropdownToggle>
-                              <DropdownMenu>
-                                {categoryOptions}
-                              </DropdownMenu>
-                            </div>
-                          </ButtonDropdown> */}
                           <ButtonDropdown isOpen={this.state.toggleManufacturerDropdownBtn} toggle={this.toggleManufacturerDropdownBtn}>
                             <div className="dropdown-content">
                             <DropdownToggle caret className="px-3" color="info">
@@ -308,17 +312,6 @@ class Deals extends React.Component{
                               ) : (
                                 null
                               )}
-                              {/* {this.state.selectedCategory ? (
-                                <div className="pb-2 float-lg-right float-md-left chip-div">
-                                  <Chip
-                                    className="filter-chip mx-3"
-                                    label={this.state.selectedCategory}
-                                    onDelete={this.clearCategoryFilter}
-                                  />
-                                </div>
-                              ) : (
-                                null
-                              )} */}
                             </div>
                           </Col>
                           <Col xs="2" md="2" className="d-block d-sm-block d-md-block d-lg-none">

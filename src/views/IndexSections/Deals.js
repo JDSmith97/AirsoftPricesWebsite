@@ -181,7 +181,7 @@ class Deals extends React.Component{
       this.state.items.forEach((item,idx) => {
         columns.push(
           <Col sm="12" md="6" lg="4" key={`{${item.store} ${item.item_id}`} id={idx}>
-            <Link to={`item/${item.item_id}`} onClick={this.scrollToTop}>
+            <Link to={`/item/${item.item_id}`} onClick={this.scrollToTop}>
               <Card className="py-3 card-deals">
                 <CardHeader>
                   <div className="card-image-deals rounded">
