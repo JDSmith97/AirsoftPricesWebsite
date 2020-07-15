@@ -42,6 +42,9 @@ const CustomAutocomplete = withStyles({
     borderWidth: "2px",
     fontFamily: "Poppins",
   },
+  popper: {
+    zIndex: "800 !important",
+  },
   paper: {
     fontFamily: "Poppins",
     "& a": {

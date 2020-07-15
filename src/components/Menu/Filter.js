@@ -14,7 +14,6 @@ import { withStyles } from "@material-ui/core/styles"
 import './../../assets/scss/mobileFilter.scss'
 
 const RightFilter = withStyles({
-  fontFamily: "Poppins",
   paper: {
     width: "50%",
     fontFamily: "Poppins",
@@ -75,7 +74,7 @@ class FilterDrawer extends React.Component {
     return (
       <div>
         <div className="w-100">
-          <CloseRoundedIcon className="float-right m-3" onClick={this.toggleFilterDrawer}/>
+          <CloseRoundedIcon className="float-right m-3" onClick={() => this.toggleFilterDrawer()}/>
         </div>
         {this.props.categoryOptions ? (
           <React.Fragment>
@@ -101,29 +100,36 @@ class FilterDrawer extends React.Component {
         ) : (
           null
         )}
-        <Button color="link" className="d-block w-100 text-left filterCategory pl-3" onClick={this.toggleManufacturers}>
-          Manufacturer
-          {this.state.isManufacturersOpen ? (
-            <KeyboardArrowUpRoundedIcon className="float-right"/>
-          ) : (
-            <KeyboardArrowDownRoundedIcon className="float-right"/>
-          )}
-        </Button>
-        <Collapse isOpen={this.state.isManufacturersOpen}>
-          <List>
-            {this.props.manufacturerOptions.map((manufacturer, index) => (
-              <ListItem button key={manufacturer} onClick={() => this.filterManufacturers(manufacturer)}>
-                <ListItemText primary={manufacturer} onClick={this.toggleFilterDrawer}/>
-              </ListItem>
-            ))}
-          </List>
-        </Collapse>
-        <Divider/>
+        {this.props.manufacturerOptions ? (
+          <React.Fragment>
+            <Button color="link" className="d-block w-100 text-left filterCategory pl-3" onClick={this.toggleManufacturers}>
+              Manufacturer
+              {this.state.isManufacturersOpen ? (
+                <KeyboardArrowUpRoundedIcon className="float-right"/>
+              ) : (
+                <KeyboardArrowDownRoundedIcon className="float-right"/>
+              )}
+            </Button>
+            <Collapse isOpen={this.state.isManufacturersOpen}>
+              <List>
+                {this.props.manufacturerOptions.map((manufacturer, index) => (
+                  <ListItem button key={manufacturer} onClick={() => this.filterManufacturers(manufacturer)}>
+                    <ListItemText primary={manufacturer} onClick={this.toggleFilterDrawer}/>
+                  </ListItem>
+                ))}
+              </List>
+            </Collapse>
+            <Divider/>
+          </React.Fragment>
+        ) : (
+          null
+        )}
       </div>
     )
   }
 
   render() {
+    console.log(this.state.toggleFilterDrawer)
     return (
       <React.Fragment>
         <div>

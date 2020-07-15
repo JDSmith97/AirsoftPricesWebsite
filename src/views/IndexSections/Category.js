@@ -9,27 +9,28 @@ import './../../assets/scss/dealCard.scss';
 import './../../assets/scss/blobs.scss';
 import FilterDrawer from './../../components/Menu/Filter.js'
 
-class Deals extends React.Component{
+class Categories extends React.Component {
   
-  state = {
-    items: [],
-    itemPrices: [],
-    loading: true,
-    limit: 15,
-    counter: 15,
-    refresh: false,
-    dealLength: 0,
-    category: this.props.category,
-    categories: [],
-    manufacturers: [],
-    toggleFilters: false,
-    toggleCategoryDropdownBtn: false,
-    toggleManufacturerDropdownBtn: false,
-    selectedCategory: null,
-    selectedManufacturer: null,
-    currency: localStorage.getItem('currency')
-  }
+  constructor(props) {
+    super(props)
 
+    this.state = {
+      items: [],
+      itemPrices: [],
+      loading: true,
+      limit: 15,
+      counter: 15,
+      refresh: false,
+      dealLength: 0,
+      category: this.props.category,
+      manufacturers: [],
+      toggleFilters: false,
+      toggleManufacturerDropdownBtn: false,
+      selectedManufacturer: null,
+      currency: localStorage.getItem('currency')
+    }
+  }
+  
   componentDidUpdate() {
     const { category } = this.props
     if(category != this.state.category){
@@ -48,8 +49,7 @@ class Deals extends React.Component{
         }
       }).then(res => {
           const itemInfo = res.data
-          console.log(itemInfo)
-          this.setState({items: itemInfo})
+          this.setState({items: itemInfo, loading: false})
           resolve('Data Fetched')
         })
     })
@@ -69,21 +69,6 @@ class Deals extends React.Component{
       })
   }
 
-  getCategoryFilters = () => {
-    return new Promise((resolve, reject) => {
-      axios.get("https://3eg3r872u3.execute-api.eu-west-2.amazonaws.com/staging/getdetails", {
-        params: {
-          allCategories: true
-        }
-      }).then(res => {
-          const categoryFilters = res.data
-          this.setState({categories: categoryFilters})
-          resolve('Data Fetched')
-        })
-        
-    })
-  }
-
   getManufacturerFilters = () => {
     return new Promise((resolve, reject) => {
       axios.get("https://3eg3r872u3.execute-api.eu-west-2.amazonaws.com/staging/getdetails", {
@@ -92,20 +77,12 @@ class Deals extends React.Component{
         }
       }).then(res => {
           const manufacturerFilters = res.data
-          this.setState({manufacturers: manufacturerFilters, loading: false})
+          this.setState({manufacturers: manufacturerFilters})
           resolve('Data Fetched')
         })
         
     })
   }
-
-  filterCategories = (category) => {
-    this.getDeals(category, this.state.selectedManufacturer).then(data => {
-      this.getLength(category, this.state.selectedManufacturer)
-      this.setState({refresh: true, selectedCategory: category})
-    })
-  }
-
   filterManufacturers = (manufacturer) => {
     this.setState({selectedManufacturer: manufacturer})
     this.getDeals(this.state.selectedCategory, manufacturer).then(data => {
@@ -118,16 +95,7 @@ class Deals extends React.Component{
     this.setState({ loading: true }, () => {
       this.getDeals()
       this.getLength()
-      this.getCategoryFilters()
       this.getManufacturerFilters()
-    })
-  }
-
-  clearCategoryFilter = () => {
-    this.setState({selectedCategory: null})
-    this.getDeals(null, this.state.selectedManufacturer).then(data => {
-      this.getLength(null, this.state.selectedManufacturer)
-      this.setState({refresh: true})
     })
   }
 
@@ -155,12 +123,6 @@ class Deals extends React.Component{
     })
   }
 
-  toggleCategoryDropdownBtn = () => {
-    this.setState({
-      toggleCategoryDropdownBtn: !this.state.toggleCategoryDropdownBtn
-    })
-  }
-
   toggleManufacturerDropdownBtn = () => {
     this.setState({
       toggleManufacturerDropdownBtn: !this.state.toggleManufacturerDropdownBtn
@@ -178,7 +140,6 @@ class Deals extends React.Component{
   };
 
   render() {
-      let categoryOptions = []
       let manufacturerOptions = []
       let columns = []
 
@@ -226,12 +187,6 @@ class Deals extends React.Component{
               </Card>
             </Link>
           </Col>
-        )
-      })
-
-      this.state.categories.forEach((category) => {
-        categoryOptions.push(
-          <DropdownItem key={category} onClick={() => this.filterCategories(category)}>{category}</DropdownItem>
         )
       })
 
@@ -366,4 +321,4 @@ class Deals extends React.Component{
   }
 }
 
-export default Deals;
+export default Categories;

@@ -9,8 +9,8 @@ import './../../assets/scss/dealCard.scss';
 import './../../assets/scss/blobs.scss';
 import FilterDrawer from './../../components/Menu/Filter.js'
 
-class Deals extends React.Component {
-
+class Manufacturers extends React.Component {
+  
   constructor(props) {
     super(props)
   
@@ -22,29 +22,33 @@ class Deals extends React.Component {
       counter: 15,
       refresh: false,
       dealLength: 0,
+      manufacturer: this.props.manufacturer,
       categories: [],
-      manufacturers: [],
       toggleFilters: false,
       toggleCategoryDropdownBtn: false,
-      toggleManufacturerDropdownBtn: false,
       selectedCategory: null,
-      selectedManufacturer: null,
       currency: localStorage.getItem('currency')
+    }
+  }
+
+  componentDidUpdate() {
+    const { manufacturer } = this.props
+    if(manufacturer != this.state.manufacturer){
+      window.location.reload(false)
     }
   }
 
   getDeals = (category, manufacturer) => {
     return new Promise((resolve, reject) => {
-      axios.get("https://3eg3r872u3.execute-api.eu-west-2.amazonaws.com/staging/getalldeals", {
+      axios.get("https://3eg3r872u3.execute-api.eu-west-2.amazonaws.com/staging/getallitems", {
         params: {
           limit: this.state.limit,
           offset: 0,
           category: category,
-          manufacturer: manufacturer
+          manufacturer: this.state.manufacturer
         }
       }).then(res => {
           const itemInfo = res.data
-          console.log(itemInfo)
           this.setState({items: itemInfo, loading: false})
           resolve('Data Fetched')
         })
@@ -52,11 +56,11 @@ class Deals extends React.Component {
   }
 
   getLength = (category, manufacturer) => {
-    axios.get(`https://3eg3r872u3.execute-api.eu-west-2.amazonaws.com/staging/getalldeals`, {
+    axios.get(`https://3eg3r872u3.execute-api.eu-west-2.amazonaws.com/staging/getallitems`, {
       params: {
         getLength: true,
         category: category,
-        manufacturer: manufacturer
+        manufacturer: this.state.manufacturer
       }
     })
       .then(res => {
@@ -80,33 +84,10 @@ class Deals extends React.Component {
     })
   }
 
-  getManufacturerFilters = () => {
-    return new Promise((resolve, reject) => {
-      axios.get("https://3eg3r872u3.execute-api.eu-west-2.amazonaws.com/staging/getdetails", {
-        params: {
-          allManufacturers: true
-        }
-      }).then(res => {
-          const manufacturerFilters = res.data
-          this.setState({manufacturers: manufacturerFilters})
-          resolve('Data Fetched')
-        })
-        
-    })
-  }
-
   filterCategories = (category) => {
-    this.getDeals(category, this.state.selectedManufacturer).then(data => {
+    this.getDeals(category, this.state.manufacturer).then(data => {
       this.getLength(category, this.state.selectedManufacturer)
       this.setState({refresh: true, selectedCategory: category})
-    })
-  }
-
-  filterManufacturers = (manufacturer) => {
-    this.setState({selectedManufacturer: manufacturer})
-    this.getDeals(this.state.selectedCategory, manufacturer).then(data => {
-      this.getLength(this.state.selectedCategory, manufacturer)
-      this.setState({refresh: true})
     })
   }
 
@@ -115,7 +96,6 @@ class Deals extends React.Component {
       this.getDeals()
       this.getLength()
       this.getCategoryFilters()
-      this.getManufacturerFilters()
     })
   }
 
@@ -123,14 +103,6 @@ class Deals extends React.Component {
     this.setState({selectedCategory: null})
     this.getDeals(null, this.state.selectedManufacturer).then(data => {
       this.getLength(null, this.state.selectedManufacturer)
-      this.setState({refresh: true})
-    })
-  }
-
-  clearManufacturerFilter = () => {
-    this.setState({selectedManufacturer: null})
-    this.getDeals(this.state.selectedCategory, null).then(data => {
-      this.getLength(this.state.selectedCategory, null)
       this.setState({refresh: true})
     })
   }
@@ -157,12 +129,6 @@ class Deals extends React.Component {
     })
   }
 
-  toggleManufacturerDropdownBtn = () => {
-    this.setState({
-      toggleManufacturerDropdownBtn: !this.state.toggleManufacturerDropdownBtn
-    })
-  }
-
   scrollToRow = () => {
     document
       .getElementById(this.state.limit-this.state.counter)
@@ -175,7 +141,6 @@ class Deals extends React.Component {
 
   render() {
       let categoryOptions = []
-      let manufacturerOptions = []
       let columns = []
 
       if(this.state.refresh) {
@@ -189,7 +154,7 @@ class Deals extends React.Component {
               <Card className="py-3 card-deals">
                 <CardHeader>
                   <div className="card-image-deals rounded">
-                    <img className="img-center img-fluid" alt="Image of product" src={item.item_image}></img>
+                    <img className="img-center img-fluid" alt={item.item_name} src={item.item_image}></img>
                   </div>
                 </CardHeader>
                 <CardBody>
@@ -197,10 +162,18 @@ class Deals extends React.Component {
                     <h4 className="">{item.item_name}</h4>
                   </div>
                   <div className="h-25">
-                    {this.state.currency === "true" ? (
-                      <h5 className="font-large text-warning"><strong>{item.item_price_eur}</strong></h5>
+                    {item.item_discount > 0 ? (
+                      this.state.currency === "true" ? (
+                        <h5 className="font-large text-warning"><strong>{item.item_price_eur}</strong></h5>
+                      ) : (
+                        <h5 className="font-large text-warning"><strong>{item.item_price_gbp}</strong></h5>
+                      )
                     ) : (
-                      <h5 className="font-large text-warning"><strong>{item.item_price_gbp}</strong></h5>
+                      this.state.currency === "true" ? (
+                        <h5 className="font-large">{item.item_price_eur}</h5>
+                      ) : (
+                        <h5 className="font-large">{item.item_price_gbp}</h5>
+                      )
                     )}
                   </div>
                   <div className="h-25">
@@ -223,11 +196,6 @@ class Deals extends React.Component {
         )
       })
 
-      this.state.manufacturers.forEach((manufacturer) => {
-        manufacturerOptions.push(
-          <DropdownItem key={manufacturer} onClick={() => this.filterManufacturers(manufacturer)}>{manufacturer}</DropdownItem>
-        )
-      })
     return (
       <div className="">
         <img
@@ -283,33 +251,12 @@ class Deals extends React.Component {
                               </DropdownMenu>
                             </div>
                           </ButtonDropdown>
-                          <ButtonDropdown className="ml-3" isOpen={this.state.toggleManufacturerDropdownBtn} toggle={this.toggleManufacturerDropdownBtn}>
-                            <div className="dropdown-content">
-                            <DropdownToggle caret className="px-3" color="info">
-                              Manufacturer
-                            </DropdownToggle>
-                            <DropdownMenu>
-                              {manufacturerOptions}
-                            </DropdownMenu>
-                            </div>
-                          </ButtonDropdown>
                         </div>
                       </Col>
                       <Col>
                         <Row className="mb-4">
                           <Col xs="10" md="10" lg="12" className="w-100 chip-col">
                             <div className="w-100 text-left">
-                              {this.state.selectedManufacturer ? (
-                                <div className="pb-2 float-lg-right float-md-left chip-div">
-                                <Chip
-                                  className="filter-chip"
-                                  label={this.state.selectedManufacturer}
-                                  onDelete={this.clearManufacturerFilter}
-                                />
-                              </div>
-                              ) : (
-                                null
-                              )}
                               {this.state.selectedCategory ? (
                                 <div className="pb-2 float-lg-right float-md-left chip-div">
                                   <Chip
@@ -325,7 +272,7 @@ class Deals extends React.Component {
                           </Col>
                           <Col xs="2" md="2" className="d-block d-sm-block d-md-block d-lg-none">
                             <div className="w-100 border-primary float-left">
-                              <FilterDrawer categoryOptions={this.state.categories} manufacturerOptions={this.state.manufacturers} filterCategories={this.filterCategories} filterManufacturers={this.filterManufacturers}/>
+                              <FilterDrawer categoryOptions={this.state.categories} filterCategories={this.filterCategories}/>
                             </div>
                           </Col>
                         </Row>
@@ -375,4 +322,4 @@ class Deals extends React.Component {
   }
 }
 
-export default Deals;
+export default Manufacturers;

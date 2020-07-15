@@ -38,12 +38,13 @@ import Switch from "react-bootstrap-switch";
 
 class IndexNavbar extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
+    
     this.state = {
       collapseOpen: false,
       color: "navbar-transparent",
       currency: localStorage.getItem('currency')
-    };
+    }
   }
 
   componentDidMount() {
@@ -210,21 +211,8 @@ class IndexNavbar extends React.Component {
                   Manufacturers
                 </DropdownToggle>
                 <DropdownMenu className="dropdown-with-icons">
-                  <DropdownItem tag={Link} to="/toyko-marui">
-                    <i className="tim-icons icon-app" />
+                  <DropdownItem tag={Link} to="/manufacturers/Toyko Marui">
                     Toyko Marui
-                  </DropdownItem>
-                  <DropdownItem tag={Link} to="/register-page">
-                    <i className="tim-icons icon-bullet-list-67" />
-                    Register Page
-                  </DropdownItem>
-                  <DropdownItem tag={Link} to="/landing-page">
-                    <i className="tim-icons icon-image-02" />
-                    Landing Page
-                  </DropdownItem>
-                  <DropdownItem tag={Link} to="/profile-page">
-                    <i className="tim-icons icon-single-02" />
-                    Profile Page
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>

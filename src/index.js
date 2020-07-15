@@ -27,6 +27,7 @@ import Index from "views/Index.js";
 import Item from "views/item/Index.js";
 import Deals from "views/deals/Index.js"
 import Category from "views/category/Index.js"
+import Manufacturer from "views/manufacturer/Index.js"
 
 ReactDOM.render(
   <BrowserRouter>
@@ -43,6 +44,10 @@ ReactDOM.render(
       <Route
         exact path="/categories/:category"
         render={props => <Category {...props} />}
+      />
+      <Route
+        exact path="/manufacturers/:manufacturer"
+        render={props => <Manufacturer {...props} />}
       />
       <Redirect from="/" to="/index" />
     </Switch>

@@ -6,13 +6,17 @@ import './../../assets/scss/item.scss';
 
 class Item extends React.Component {
 
-  state = {
-    item: [],
-    itemPrices: [],
-    loading: true,
-    currency: localStorage.getItem('currency')
-  }
+  constructor(props) {
+    super(props)
 
+    this.state = {
+      item: [],
+      itemPrices: [],
+      loading: true,
+      currency: localStorage.getItem('currency')
+    }
+  }
+  
   componentDidMount() {
     this.setState({ loading: true }, () => {
       axios.get(`https://3eg3r872u3.execute-api.eu-west-2.amazonaws.com/staging?id=${this.props.id}`)
