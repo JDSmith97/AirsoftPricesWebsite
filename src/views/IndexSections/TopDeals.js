@@ -80,7 +80,7 @@ class TopDeals extends React.Component {
                   <Card className="py-3 card-deals">
                     <CardHeader>
                       <div className="card-image-deals rounded">
-                        <img className="img-center img-fluid" alt="Image of product" src={this.state.item[0].item_image}></img>
+                        <img className="img-center img-fluid" alt={this.state.item[0].item_name} src={this.state.item[0].item_image}></img>
                       </div>
                     </CardHeader>
                     <CardBody>
@@ -129,7 +129,7 @@ class TopDeals extends React.Component {
                     <Card className="py-3 card-deals">
                       <CardHeader>
                         <div className="card-image-deals rounded">
-                          <img className="img-center img-fluid" alt="Image of product" src={this.state.item[1].item_image}></img>
+                          <img className="img-center img-fluid" alt={this.state.item[1].item_name} src={this.state.item[1].item_image}></img>
                         </div>
                       </CardHeader>
                       <CardBody>
@@ -178,7 +178,7 @@ class TopDeals extends React.Component {
                     <Card className="py-3 card-deals">
                       <CardHeader>
                         <div className="card-image-deals rounded">
-                          <img className="img-center img-fluid" alt="Image of product" src={this.state.item[2].item_image}></img>
+                          <img className="img-center img-fluid" alt={this.state.item[2].item_name} src={this.state.item[2].item_image}></img>
                         </div>
                       </CardHeader>
                       <CardBody>

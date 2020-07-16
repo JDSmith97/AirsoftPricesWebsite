@@ -30,10 +30,10 @@ class Categories extends React.Component {
       currency: localStorage.getItem('currency')
     }
   }
-  
+
   componentDidUpdate() {
     const { category } = this.props
-    if(category != this.state.category){
+    if(category !== this.state.category){
       window.location.reload(false)
     }
   }
@@ -177,11 +177,15 @@ class Categories extends React.Component {
                     )}
                   </div>
                   <div className="h-25">
-                    {this.state.currency === "true" ? (
+                  {item.item_discount > 0 ? (
+                    this.state.currency === "true" ? (
                       <p><strong>{item.item_discount_eur}</strong> savings!</p>
                     ) : (
                       <p><strong>{item.item_discount_gbp}</strong> savings!</p>
-                    )}
+                    )
+                  ) : (
+                    null
+                  )}
                   </div>
                 </CardBody>
               </Card>
@@ -198,36 +202,37 @@ class Categories extends React.Component {
     return (
       <div className="">
         <img
-          alt="..."
+          alt=""
           className="bean-blob"
           src={require("assets/img/blob.png")}
         />
         <img
-          alt="..."
+          alt=""
           className="bean-blob2"
           src={require("assets/img/blob.png")}
         />
         <img
-          alt="..."
+          alt=""
           className="blob-path4-0"
           src={require("assets/img/path4.png")}
         />
         <img
-          alt="..."
+          alt=""
           className="blob-path4-1"
           src={require("assets/img/path4.png")}
         />
         <img
+          alt=""
           className="waves"
           src={require("assets/img/waves.png")}
         />
         <img
-          alt="..."
+          alt=""
           className="triangle"
           src={require("assets/img/triunghiuri.png")}
         />
         <img
-          alt="..."
+          alt=""
           className="blob-path5"
           src={require("assets/img/path5.png")}
         />

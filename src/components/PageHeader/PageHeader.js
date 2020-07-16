@@ -77,7 +77,7 @@ class PageHeader extends React.Component {
   }
 
   handleKeyPress(target, value) {
-    if(target.charCode==13){
+    if(target.charCode===13){
       if(this.state.value && this.state.value.item_id >= 0) {
         this.setState({ redirect: true });
       }

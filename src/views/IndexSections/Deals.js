@@ -44,7 +44,6 @@ class Deals extends React.Component {
         }
       }).then(res => {
           const itemInfo = res.data
-          console.log(itemInfo)
           this.setState({items: itemInfo, loading: false})
           resolve('Data Fetched')
         })
@@ -189,7 +188,7 @@ class Deals extends React.Component {
               <Card className="py-3 card-deals">
                 <CardHeader>
                   <div className="card-image-deals rounded">
-                    <img className="img-center img-fluid" alt="Image of product" src={item.item_image}></img>
+                    <img className="img-center img-fluid" alt={item.item_name} src={item.item_image}></img>
                   </div>
                 </CardHeader>
                 <CardBody>
@@ -231,36 +230,37 @@ class Deals extends React.Component {
     return (
       <div className="">
         <img
-          alt="..."
+          alt=""
           className="bean-blob"
           src={require("assets/img/blob.png")}
         />
         <img
-          alt="..."
+          alt=""
           className="bean-blob2"
           src={require("assets/img/blob.png")}
         />
         <img
-          alt="..."
+          alt=""
           className="blob-path4-0"
           src={require("assets/img/path4.png")}
         />
         <img
-          alt="..."
+          alt=""
           className="blob-path4-1"
           src={require("assets/img/path4.png")}
         />
         <img
+          alt=""
           className="waves"
           src={require("assets/img/waves.png")}
         />
         <img
-          alt="..."
+          alt=""
           className="triangle"
           src={require("assets/img/triunghiuri.png")}
         />
         <img
-          alt="..."
+          alt=""
           className="blob-path5"
           src={require("assets/img/path5.png")}
         />

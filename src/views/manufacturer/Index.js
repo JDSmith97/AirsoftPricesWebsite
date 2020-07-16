@@ -34,7 +34,7 @@ class Index extends React.Component {
       <>
         <IndexNavbar />
         <div className="wrapper">
-          <Manufacturer category={this.props.match.params.manufacturer}/>
+          <Manufacturer manufacturer={this.props.match.params.manufacturer}/>
           <div className="main">
             <AddAProduct />
           </div>

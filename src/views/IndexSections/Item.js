@@ -117,15 +117,18 @@ class Item extends React.Component {
                 <Card className="card-sm-w">
                   <Container>
                       <CardHeader>
-                        <div className="content-left">
-                          <img className="image img-center img-fluid rounded shadow-lg" alt="Image of product" src={this.state.item.item_image}></img>
+                        <div className="card-image-deals rounded">
+                          <img className="img-center img-fluid" alt={this.state.item.item_name} src={this.state.item.item_image}></img>
                         </div>
+                        {/* <div className="content-left">
+                          <img className="image img-center img-fluid rounded shadow-lg" alt="Image of product" src={this.state.item.item_image}></img>
+                        </div> */}
                         <h3 className="d-sm-block">
                           {this.state.item.item_name}
                         </h3>
                       </CardHeader>
                       <CardBody className="p-0">
-                        <Table className="table-responsive table-sm-h">
+                        <Table className="table-responsive-sm table-responsive-md table-sm-h table-md-h">
                           <thead className="small-font">
                             <tr>
                               <th>Airsoft Store</th>

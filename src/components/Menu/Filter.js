@@ -26,7 +26,9 @@ const RightFilter = withStyles({
       color: "#000 !important",
       fontSize: "0.9rem"
     },
-    ["@media (max-height:960px)"]: { width: "80%" },
+    "@media (max-height:960px)": { 
+      width: "80%" 
+    }
   }
 })(SwipeableDrawer)
 
@@ -129,7 +131,6 @@ class FilterDrawer extends React.Component {
   }
 
   render() {
-    console.log(this.state.toggleFilterDrawer)
     return (
       <React.Fragment>
         <div>

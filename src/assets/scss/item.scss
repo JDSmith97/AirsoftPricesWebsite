@@ -1,4 +1,11 @@
-@media (max-width: 576px) {
+.card-image-deals {
+  max-height: 700px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+}
+
+@media (max-height: 750px) {
   .small-font {
     font-size: small;
   }
@@ -7,11 +14,36 @@
     width: 345px;
   }
 
-  .content-center {
-    top: 55% !important;
+  // .content-center-item {
+  //   margin-top: 6rem;
+  //   margin-left: 1rem;
+  //   text-align: center;
+  //   width: 100%;
+  // }
+
+  // .table-sm-h {
+  //   height: 35rem;
+  // }
+}
+
+@media (max-height: 700px) {
+  .small-font {
+    font-size: small;
   }
 
-  .table-sm-h {
-    height: 20rem;
+  .card-sm-w {
+    width: 345px;
   }
+
+  // .content-center-item {
+  //   margin-top: 6rem;
+  //   margin-left: 0rem;
+  //   text-align: center;
+  //   width: 100%;
+  // }
+
+  // .table-sm-h {
+  //   height: 35rem;
+  // }
 }
+

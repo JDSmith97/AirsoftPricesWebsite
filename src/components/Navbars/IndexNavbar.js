@@ -31,8 +31,7 @@ import {
   DropdownMenu,
   DropdownToggle,
   DropdownItem,
-  UncontrolledDropdown,
-  CustomInput
+  UncontrolledDropdown
 } from "reactstrap";
 import Switch from "react-bootstrap-switch";
 
@@ -211,8 +210,11 @@ class IndexNavbar extends React.Component {
                   Manufacturers
                 </DropdownToggle>
                 <DropdownMenu className="dropdown-with-icons">
-                  <DropdownItem tag={Link} to="/manufacturers/Toyko Marui">
-                    Toyko Marui
+                  <DropdownItem tag={Link} to="/manufacturers/G&G">
+                    G&G
+                  </DropdownItem>
+                  <DropdownItem tag={Link} to="/manufacturers/Tokyo Marui">
+                    Tokyo Marui
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>

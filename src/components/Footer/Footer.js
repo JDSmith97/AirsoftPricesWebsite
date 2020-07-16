@@ -30,6 +30,11 @@ import {
 } from "reactstrap";
 
 class Footer extends React.Component {
+
+  scrollToTop = () => {
+    window.scrollTo(0, 0)
+  }
+
   render() {
     return (
       <footer className="footer">
@@ -41,23 +46,8 @@ class Footer extends React.Component {
             <Col md="3">
               <Nav>
                 <NavItem>
-                  <NavLink to="/" tag={Link}>
-                    Home
-                  </NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink to="/landing-page" tag={Link}>
-                    Landing
-                  </NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink to="/register-page" tag={Link}>
-                    Register
-                  </NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink to="/profile-page" tag={Link}>
-                    Profile
+                  <NavLink to="/about-us" tag={Link} onClick={this.scrollToTop()}>
+                  About Us
                   </NavLink>
                 </NavItem>
               </Nav>
@@ -65,46 +55,18 @@ class Footer extends React.Component {
             <Col md="3">
               <Nav>
                 <NavItem>
-                  <NavLink href="https://creative-tim.com/contact-us?ref=blkdsr-footer">
+                  <NavLink to="/contact-us" tag={Link} onClick={this.scrollToTop()}>
                     Contact Us
-                  </NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink href="https://creative-tim.com/about-us?ref=blkdsr-footer">
-                    About Us
-                  </NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink href="https://creative-tim.com/blog?ref=blkdsr-footer">
-                    Blog
-                  </NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink href="https://opensource.org/licenses/MIT">
-                    License
                   </NavLink>
                 </NavItem>
               </Nav>
             </Col>
             <Col md="3">
-              <h3 className="title">Follow us:</h3>
-              <div className="btn-wrapper profile">
+              <div className="btn-wrapper profile mt-4">
                 <Button
                   className="btn-icon btn-neutral btn-round btn-simple"
                   color="default"
-                  href="https://twitter.com/creativetim"
-                  id="tooltip622135962"
-                  target="_blank"
-                >
-                  <i className="fab fa-twitter" />
-                </Button>
-                <UncontrolledTooltip delay={0} target="tooltip622135962">
-                  Follow us
-                </UncontrolledTooltip>
-                <Button
-                  className="btn-icon btn-neutral btn-round btn-simple"
-                  color="default"
-                  href="https://www.facebook.com/creativetim"
+                  href="https://www.facebook.com/AirsoftPrices-111177704005247"
                   id="tooltip230450801"
                   target="_blank"
                 >
@@ -112,18 +74,6 @@ class Footer extends React.Component {
                 </Button>
                 <UncontrolledTooltip delay={0} target="tooltip230450801">
                   Like us
-                </UncontrolledTooltip>
-                <Button
-                  className="btn-icon btn-neutral btn-round btn-simple"
-                  color="default"
-                  href="https://dribbble.com/creativetim"
-                  id="tooltip318450378"
-                  target="_blank"
-                >
-                  <i className="fab fa-dribbble" />
-                </Button>
-                <UncontrolledTooltip delay={0} target="tooltip318450378">
-                  Follow us
                 </UncontrolledTooltip>
               </div>
             </Col>
