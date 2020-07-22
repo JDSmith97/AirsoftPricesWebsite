@@ -68,21 +68,21 @@ class TopDeals extends React.Component {
             {this.state.loading ? (
               this.loader()
             ) : (
-              <DealsCard item={this.state.item[0]} />
+              <DealsCard item={this.state.item[0]} currency={this.state.currency}/>
             )}
           </Col>
           <Col md={{ size: "8", offset: 2 }} lg={{ size: "4", offset: 0 }}>
             {this.state.loading ? (
               this.loader()
             ) : (
-              <DealsCard item={this.state.item[1]} />
+              <DealsCard item={this.state.item[1]} currency={this.state.currency}/>
             )}
           </Col>
           <Col md={{ size: "8", offset: 2 }} lg={{ size: "4", offset: 0 }}>
             {this.state.loading ? (
               this.loader()
             ) : (
-              <DealsCard item={this.state.item[2]} />
+              <DealsCard item={this.state.item[2]} currency={this.state.currency}/>
             )}
           </Col>
         </Row>

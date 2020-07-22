@@ -8,6 +8,7 @@ class DealsCard extends Component {
 
     this.state = {
       item: this.props.item,
+      currency: this.props.currency
     }
   }
 
