@@ -1,36 +1,19 @@
-/*!
+import React, { useEffect } from "react"
+import ReactDOM from "react-dom"
+import { createBrowserHistory } from "history"
+import { Router, Route, Switch, Redirect } from "react-router-dom"
 
-=========================================================
-* BLK Design System React - v1.1.0
-=========================================================
+import "assets/css/nucleo-icons.css"
+import "assets/scss/blk-design-system-react.scss?v=1.1.0"
+import "assets/demo/demo.css"
 
-* Product Page: https://www.creative-tim.com/product/blk-design-system-react
-* Copyright 2020 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/blk-design-system-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-import React, { useEffect } from "react";
-import ReactDOM from "react-dom";
-import { createBrowserHistory } from 'history'
-import { Router, Route, Switch, Redirect } from "react-router-dom";
-
-import "assets/css/nucleo-icons.css";
-import "assets/scss/blk-design-system-react.scss?v=1.1.0";
-import "assets/demo/demo.css";
-
-import Index from "views/Index.js";
-import Item from "views/item/Index.js";
+import Index from "views/Index.js"
+import Item from "views/item/Index.js"
 import Deals from "views/deals/Index.js"
 import Category from "views/category/Index.js"
 import Manufacturer from "views/manufacturer/Index.js"
 
-import ReactGA from 'react-ga';
+import ReactGA from "react-ga"
 
 ReactGA.initialize("UA-172881277-1")
 const browserHistory = createBrowserHistory()
@@ -46,30 +29,23 @@ const App = () => {
   return (
     <Router history={browserHistory}>
       <Switch>
-        <Route path="/index" render={props => <Index {...props} />} />
+        <Route path='/index' render={(props) => <Index {...props} />} />
+        <Route exact path='/item/:id' render={(props) => <Item {...props} />} />
+        <Route path='/deals' render={(props) => <Deals {...props} />} />
         <Route
-          exact path="/item/:id"
-          render={props => <Item {...props} />}
+          exact
+          path='/categories/:category'
+          render={(props) => <Category {...props} />}
         />
         <Route
-          path="/deals"
-          render={props => <Deals {...props} />}
+          exact
+          path='/manufacturers/:manufacturer'
+          render={(props) => <Manufacturer {...props} />}
         />
-        <Route
-          exact path="/categories/:category"
-          render={props => <Category {...props} />}
-        />
-        <Route
-          exact path="/manufacturers/:manufacturer"
-          render={props => <Manufacturer {...props} />}
-        />
-        <Redirect from="/" to="/index" />
+        <Redirect from='/' to='/index' />
       </Switch>
     </Router>
   )
 }
 
-ReactDOM.render(
-  <App/>,
-  document.getElementById("root")
-)
+ReactDOM.render(<App />, document.getElementById("root"))

@@ -1,20 +1,3 @@
-/*!
-
-=========================================================
-* BLK Design System React - v1.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/blk-design-system-react
-* Copyright 2020 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/blk-design-system-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
 import { Link } from "react-router-dom";
 // reactstrap components
@@ -111,7 +94,7 @@ class IndexNavbar extends React.Component {
     window.location.reload(false);
   }
 
-  render() {
+  oldNavBar = () => {
     return (
       <Navbar
         className={"fixed-top " + this.state.color}
@@ -148,9 +131,7 @@ class IndexNavbar extends React.Component {
             <div className="navbar-collapse-header">
               <Row>
                 <Col className="collapse-brand" xs="6">
-                  <a href="#pablo" onClick={e => e.preventDefault()}>
-                    Airsoft Prices
-                  </a>
+                  <a href="/"> Airsoft Prices</a>
                 </Col>
                 <Col className="collapse-close text-right" xs="6">
                   <button
@@ -164,6 +145,18 @@ class IndexNavbar extends React.Component {
               </Row>
             </div>
             <Nav navbar className="mt-2">
+              <NavItem>
+                <Button
+                  className="nav-link d-none d-lg-block font-weight-light"
+                  color="link"
+                  href="/deals"
+                >
+                  Top Deals
+                </Button>
+                <div className="nav-link mb-1 d-lg-none d-xl-none font-weight-light" href="/deals">
+                  <a  className = "pl-2" href="/deals">Top Deals</a>
+                </div> 
+              </NavItem>
               <UncontrolledDropdown nav>
                 <DropdownToggle
                   caret
@@ -219,19 +212,6 @@ class IndexNavbar extends React.Component {
                 </DropdownMenu>
               </UncontrolledDropdown>
               <NavItem>
-                <Button
-                  className="nav-link d-none d-lg-block"
-                  color="default"
-                  onClick={this.scrollToAddAProduct}
-                >
-                  <i className="tim-icons icon-bulb-63" /> Want a product added?
-                </Button>
-                <div className="nav-link mt-1 d-lg-none d-xl-none" onClick={this.scrollToAddAProduct}>
-                  <i className="fa d-lg-none d-xl-none pl-1" />
-                  Want a product added? <i className="tim-icons icon-bulb-63 pl-2"/> 
-                </div> 
-              </NavItem>
-              <NavItem>
               <div className="nav-link mt-2 mt-md-2 mt-lg-0">
                 <strong className="pl-2 pr-2">GBP</strong>
                 <Switch value={JSON.parse(this.state.currency)} onChange={() => this.changeCurrency()} onText="€" offText="£"/>
@@ -242,7 +222,140 @@ class IndexNavbar extends React.Component {
           </Collapse>
         </Container>
       </Navbar>
-    );
+    )
+  }
+
+  render() {
+    return (
+      <Row>
+          <Navbar
+            className={"fixed-top " + this.state.color}
+            color-on-scroll="100"
+            expand="lg"
+            >
+            <Container>
+            <div className="navbar-translate">
+              <button
+                aria-expanded={this.state.collapseOpen}
+                className="navbar-toggler navbar-toggler"
+                onClick={this.toggleCollapse}
+              >
+                <span className="navbar-toggler-bar bar1" />
+                <span className="navbar-toggler-bar bar2" />
+                <span className="navbar-toggler-bar bar3" />
+              </button>
+              <NavbarBrand
+                to="/"
+                id="navbar-brand"
+                tag={Link}
+                onClick={this.scrollToTop}
+              >
+                Airsoft Prices
+              </NavbarBrand>
+            </div>
+            <Collapse
+              className={"justify-content-end " + this.state.collapseOut}
+              navbar
+              isOpen={this.state.collapseOpen}
+              onExiting={this.onCollapseExiting}
+              onExited={this.onCollapseExited}
+            >
+              <div className="navbar-collapse-header">
+                <Row>
+                  <Col className="collapse-brand" xs="6">
+                    <a href="/"> Airsoft Prices</a>
+                  </Col>
+                  <Col className="collapse-close text-right" xs="6">
+                    <button
+                      aria-expanded={this.state.collapseOpen}
+                      className="navbar-toggler"
+                      onClick={this.toggleCollapse}
+                    >
+                      <i className="tim-icons icon-simple-remove" />
+                    </button>
+                  </Col>
+                </Row>
+              </div>
+              <Nav navbar className="mt-2">
+                <NavItem>
+                  <Button
+                    className="nav-link d-none d-lg-block font-weight-light"
+                    color="link"
+                    href="/deals"
+                  >
+                    Top Deals
+                  </Button>
+                  <div className="nav-link mb-1 d-lg-none d-xl-none font-weight-light" href="/deals">
+                    <a  className = "pl-2" href="/deals">Top Deals</a>
+                  </div> 
+                </NavItem>
+                <UncontrolledDropdown nav>
+                  <DropdownToggle
+                    caret
+                    color="default"
+                    data-toggle="dropdown"
+                    href="#airsoftprices"
+                    nav
+                    onClick={e => e.preventDefault()}
+                  >
+                    <i className="fa d-lg-none d-xl-none" />
+                    Airsoft Guns
+                  </DropdownToggle>
+                  <DropdownMenu className="dropdown-with-icons">
+                    <DropdownItem tag={Link} to="/categories/Assault Rifle">
+                      Assault Rifles
+                    </DropdownItem>
+                    <DropdownItem tag={Link} to="/categories/Pistol">
+                      Pistols
+                    </DropdownItem>
+                    <DropdownItem tag={Link} to="/categories/Shotgun">
+                      Shotguns
+                    </DropdownItem>
+                    <DropdownItem tag={Link} to="/categories/Sniper Rifle">
+                      Sniper Rifles
+                    </DropdownItem>
+                    <DropdownItem tag={Link} to="/categories/Submachine Gun">
+                      Submachine Guns
+                    </DropdownItem>
+                    <DropdownItem tag={Link} to="/categories/Support Gun">
+                      Support Guns
+                    </DropdownItem>
+                  </DropdownMenu>
+                </UncontrolledDropdown>
+                <UncontrolledDropdown nav>
+                  <DropdownToggle
+                    caret
+                    color="default"
+                    data-toggle="dropdown"
+                    href="#airsoftprices"
+                    nav
+                    onClick={e => e.preventDefault()}
+                  >
+                    <i className="fa d-lg-none d-xl-none" />
+                    Manufacturers
+                  </DropdownToggle>
+                  <DropdownMenu className="dropdown-with-icons">
+                    <DropdownItem tag={Link} to="/manufacturers/G&G">
+                      G&G
+                    </DropdownItem>
+                    <DropdownItem tag={Link} to="/manufacturers/Tokyo Marui">
+                      Tokyo Marui
+                    </DropdownItem>
+                  </DropdownMenu>
+                </UncontrolledDropdown>
+                <NavItem>
+                <div className="nav-link mt-2 mt-md-2 mt-lg-0">
+                  <strong className="pl-2 pr-2">GBP</strong>
+                  <Switch value={JSON.parse(this.state.currency)} onChange={() => this.changeCurrency()} onText="€" offText="£"/>
+                  <strong className="pl-2">EUR</strong>
+                </div>
+                </NavItem>
+              </Nav>
+            </Collapse>
+          </Container>
+        </Navbar>
+      </Row>
+    )
   }
 }
 

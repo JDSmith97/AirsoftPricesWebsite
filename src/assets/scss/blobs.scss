@@ -1,51 +1,40 @@
-.bean-blob {
+.backdrop {
+    background-image: url("./../img/blob.png");
     position: absolute;
     opacity: 0.02;
     max-width: 60%;
+    right: 0em;
+    top: 50em;
 }
 
-.bean-blob2 {
+.blob {
+    background-image: url("./../img/blob.png");
     position: absolute;
     opacity: 0.02;
-    max-width: 50%;
-    right: 0rem;
-    top: 80rem;
+    max-width: 60%;
+    right: 0em;
+    top: 50em;
 }
 
-.blob-path4-0 {
-    position: absolute;
-    opacity: 0.02;
-    max-width: 30%;
-    right: 0rem;
-    top: -4rem;
-}
-
-.blob-path4-1 {
-    position: absolute;
-    opacity: 0.02;
-    max-width: 30%;
-    top: -4rem;
-}
-
-.blob-path5 {
+.path3 {
     position: absolute;
     opacity: 0.02;
     max-width: 40%;
-    top: 90rem;
-    left: -5rem;
+    left: 10em;
+    top: 25em;
 }
 
-.waves {
-    position: absolute;
-    opacity: 0.02;
-    max-width: 50%;
-    top: 130rem;
-}
-
-.triangle {
+.path4 {
     position: absolute;
     opacity: 0.02;
     max-width: 30%;
-    bottom: 50rem;
-    right: 13rem;
+    right: 0em;
+    top: 10em;
+}
+
+.path5 {
+    position: absolute;
+    opacity: 0.02;
+    max-width: 30%;
+    top: -4rem;
 }
