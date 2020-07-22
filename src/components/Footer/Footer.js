@@ -17,7 +17,7 @@ class Footer extends React.Component {
             </Col>
             <Col md='6' className='d-flex align-items-center'>
               <h4 className='m-md-0 w-100 text-center'>
-                Have a question? <a href='mailto:name@email.com'> Contact us</a>
+                Have a question? <a href='mailto:contact@airsoft-prices.com'> Contact us</a>
               </h4>
             </Col>
             <Col md='3' className='d-flex align-items-center'>

@@ -102,54 +102,6 @@ class TopDeals extends React.Component {
           </Col>
         </Row>
       </>
-      // <div className="">
-      //   {/* <div className="space-50" /> */}
-      //   <Container fluid className="text-center">
-      //     <h2 className="title">
-      //       Top Deals Right Now!
-      //     </h2>
-      //     <Row>
-      //       <Col sm="12" md="6" lg="4">
-      //       {this.state.loading ? (
-      //         this.loader()
-      //       ) : (
-      //         <DealsCard item={this.state.item[0]}/>
-      //       )}
-      //       </Col>
-      //       <Col sm="12" md="6" lg="4">
-      //         {this.state.loading ? (
-      //             this.loader()
-      //         ) : (
-      //           <DealsCard item={this.state.item[1]}/>
-      //         )}
-      //       </Col>
-      //       <Col sm="12" md="6" lg="4" xl="4" className="d-block d-sm-block d-md-none d-lg-block d-xl-block">
-      //         {this.state.loading ? (
-      //             this.loader()
-      //         ) : (
-      //           <DealsCard item={this.state.item[2]}/>
-      //         )}
-      //       </Col>
-      //     </Row>
-      // <Row>
-      //   <Col sm="4"></Col>
-      //   <Col sm="4">
-      //     <Link to="deals" onClick={this.scrollToTop}>
-      //       <Button
-      //           className="d-lg-block w-100"
-      //           color="info"
-      //           data-placement="right"
-      //           type="button"
-      //           target="_blank"
-      //         >
-      //           View All Deals!
-      //       </Button>
-      //     </Link>
-      //   </Col>
-      //   <Col sm="4"></Col>
-      // </Row>
-      //   </Container>
-      // </div>
     )
   }
 }
