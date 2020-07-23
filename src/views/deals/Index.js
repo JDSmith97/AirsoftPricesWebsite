@@ -19,8 +19,6 @@ class Index extends React.Component {
         <Container fluid>
           <IndexNavbar />
           <Deals />
-        </Container>
-        <Container fluid>
           <Row className='mt-5'>
             <AddAProduct />
           </Row>

@@ -233,7 +233,7 @@ class Deals extends React.Component {
                 </div>
               </CardHeader>
               <CardBody>
-                <div className='h-25 mt-4'>
+                <div className='h-25 my-4'>
                   <h4 className=''>{item.item_name}</h4>
                 </div>
                 <div className='h-25'>
@@ -287,10 +287,10 @@ class Deals extends React.Component {
       )
     })
     return (
-      <div className=''>
-        <div className='section' data-background-color='black'>
-          <div className='space-50' />
-          {!this.state.loading ? (
+      <>
+        {!this.state.loading ? (
+          <div className='section' data-background-color='black'>
+            <div className='space-50' />
             <Container className='text-center'>
               <Row>
                 <div className='w-100 px-3'>
@@ -393,11 +393,11 @@ class Deals extends React.Component {
                 </Row>
               )}
             </Container>
-          ) : (
-            <Loader />
-          )}
-        </div>
-      </div>
+          </div>
+        ) : (
+          <Loader />
+        )}
+      </>
     )
   }
 }

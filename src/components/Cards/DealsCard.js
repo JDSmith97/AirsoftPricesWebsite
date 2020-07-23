@@ -27,7 +27,7 @@ class DealsCard extends Component {
               </div>
             </CardHeader>
             <CardBody className='text-center'>
-              <div className='h-25 mt-4'>
+              <div className='h-25 my-4'>
                 <h4 className=''>{this.state.item.item_name}</h4>
               </div>
               <div className='h-25'>

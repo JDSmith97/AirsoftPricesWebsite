@@ -76,6 +76,7 @@ class FilterDrawer extends React.Component {
     return (
       <div>
         <div className="w-100">
+          <p className="filter-font text-dark float-left m-3">Filters</p>
           <CloseRoundedIcon className="float-right m-3" onClick={() => this.toggleFilterDrawer()}/>
         </div>
         {this.props.categoryOptions ? (
@@ -137,6 +138,7 @@ class FilterDrawer extends React.Component {
           <FilterListRoundedIcon
             className="float-right"
             onClick={this.toggleFilterDrawer}
+            style={{width:"1.2em", height:"1.2em"}}
           />
           {this.state.toggleFilterDrawer ? (
             <RightFilter

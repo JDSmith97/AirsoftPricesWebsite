@@ -195,7 +195,7 @@ class Categories extends React.Component {
                 </div>
               </CardHeader>
               <CardBody>
-                <div className='h-25 mt-4'>
+                <div className='h-25 my-4'>
                   <h4 className=''>{item.item_name}</h4>
                 </div>
                 <div className='h-25'>
@@ -246,94 +246,105 @@ class Categories extends React.Component {
       )
     })
     return (
-      <div className='overflow-hidden'>
-        <div className='section' data-background-color='black'>
-          <div className='space-50' />
-          {!this.state.loading ? (
-            <Container className='text-center'>
-              <Row>
-                <div className='w-100 px-3'>
-                  <Row>
-                    <Col className='d-none d-lg-block d-xl-block'>
-                      <div className='border-primary mb-4 float-left'>
-                        <ButtonDropdown
-                          isOpen={this.state.toggleManufacturerDropdownBtn}
-                          toggle={this.toggleManufacturerDropdownBtn}
-                        >
-                          <div className='dropdown-content'>
-                            <DropdownToggle caret className='px-3' color='info'>
-                              Manufacturer
-                            </DropdownToggle>
-                            <DropdownMenu>{manufacturerOptions}</DropdownMenu>
-                          </div>
-                        </ButtonDropdown>
-                      </div>
-                    </Col>
-                    <Col>
-                      <Row className='mb-4'>
-                        <Col xs='10' md='10' lg='12' className='w-100 chip-col'>
-                          <div className='w-100 text-left'>
-                            {this.state.selectedManufacturer ? (
-                              <div className='pb-2 float-lg-right float-md-left chip-div'>
-                                <Chip
-                                  className='filter-chip'
-                                  label={this.state.selectedManufacturer}
-                                  onDelete={this.clearManufacturerFilter}
-                                />
-                              </div>
-                            ) : null}
-                          </div>
-                        </Col>
-                        <Col
-                          xs='2'
-                          md='2'
-                          className='d-block d-sm-block d-md-block d-lg-none'
-                        >
-                          <div className='w-100 border-primary float-left'>
-                            <FilterDrawer
-                              manufacturerOptions={this.state.manufacturers}
-                              filterManufacturers={this.filterManufacturers}
-                            />
-                          </div>
-                        </Col>
-                      </Row>
-                    </Col>
+      <>
+        {!this.state.loading ? (
+          <div className='overflow-hidden'>
+            <div className='section' data-background-color='black'>
+              <div className='space-50' />
+              <Container className='text-center'>
+                <Row>
+                  <div className='w-100 px-3'>
+                    <Row>
+                      <Col className='d-none d-lg-block d-xl-block'>
+                        <div className='border-primary mb-4 float-left'>
+                          <ButtonDropdown
+                            isOpen={this.state.toggleManufacturerDropdownBtn}
+                            toggle={this.toggleManufacturerDropdownBtn}
+                          >
+                            <div className='dropdown-content'>
+                              <DropdownToggle
+                                caret
+                                className='px-3'
+                                color='info'
+                              >
+                                Manufacturer
+                              </DropdownToggle>
+                              <DropdownMenu>{manufacturerOptions}</DropdownMenu>
+                            </div>
+                          </ButtonDropdown>
+                        </div>
+                      </Col>
+                      <Col>
+                        <Row className='mb-4'>
+                          <Col
+                            xs='10'
+                            md='10'
+                            lg='12'
+                            className='w-100 chip-col'
+                          >
+                            <div className='w-100 text-left'>
+                              {this.state.selectedManufacturer ? (
+                                <div className='pb-2 float-lg-right float-md-left chip-div'>
+                                  <Chip
+                                    className='filter-chip'
+                                    label={this.state.selectedManufacturer}
+                                    onDelete={this.clearManufacturerFilter}
+                                  />
+                                </div>
+                              ) : null}
+                            </div>
+                          </Col>
+                          <Col
+                            xs='2'
+                            md='2'
+                            className='d-block d-sm-block d-md-block d-lg-none'
+                          >
+                            <div className='w-100 border-primary float-left'>
+                              <FilterDrawer
+                                manufacturerOptions={this.state.manufacturers}
+                                filterManufacturers={this.filterManufacturers}
+                              />
+                            </div>
+                          </Col>
+                        </Row>
+                      </Col>
+                    </Row>
+                  </div>
+                </Row>
+                <Row>{columns}</Row>
+                {this.state.limit < this.state.dealLength ? (
+                  <Row className='mt-5'>
+                    <div className='w-100'>
+                      <p className='pb-2'>
+                        Showing {this.state.limit} of {this.state.dealLength}{" "}
+                        results
+                      </p>
+                      <Button
+                        color='primary'
+                        className='text-center text-uppercase'
+                        onClick={this.loadMore}
+                      >
+                        Load more products
+                      </Button>
+                    </div>
                   </Row>
-                </div>
-              </Row>
-              <Row>{columns}</Row>
-              {this.state.limit < this.state.dealLength ? (
-                <Row className='mt-5'>
-                  <div className='w-100'>
-                    <p className='pb-2'>
-                      Showing {this.state.limit} of {this.state.dealLength}{" "}
-                      results
-                    </p>
-                    <Button
-                      color='primary'
-                      className='text-center text-uppercase'
-                      onClick={this.loadMore}
-                    >
-                      Load more products
-                    </Button>
-                  </div>
-                </Row>
-              ) : (
-                <Row className='mt-5'>
-                  <div className='w-100'>
-                    <p>
-                      Showing {this.state.dealLength} of {this.state.dealLength}{" "}
-                      results
-                    </p>
-                  </div>
-                </Row>
-              )}
-            </Container>
-          ) : (
-            <Loader />
-          )}
-        </div>
-      </div>
+                ) : (
+                  <Row className='mt-5'>
+                    <div className='w-100'>
+                      <p>
+                        Showing {this.state.dealLength} of{" "}
+                        {this.state.dealLength} results
+                      </p>
+                    </div>
+                  </Row>
+                )}
+              </Container>
+            </div>
+          </div>
+        ) : (
+          <Loader />
+        )}
+      </>
     )
   }
 }

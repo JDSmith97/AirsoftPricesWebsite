@@ -101,7 +101,7 @@ class Item extends React.Component {
             <div className='squares square5' />
             <div className='squares square6' />
             <div className='squares square7' />
-            <Col md={{ size: "8", offset: 2 }}>
+            <Col md={{ size: "8", offset: 2 }} lg={{ size: "6", offset: 3 }} xl={{ size: "4", offset: 4}}>
               <Card className='my-5'>
                 <CardHeader>
                   <div className='card-image-item rounded'>

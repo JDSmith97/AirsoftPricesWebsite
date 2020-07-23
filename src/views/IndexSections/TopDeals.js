@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
 // reactstrap components
-import { Button, Row, Col, Card, CardBody } from "reactstrap"
+import { Button, Row, Col, Card, CardBody, Container } from "reactstrap"
 import Loader from "react-loader-spinner"
 import DealsCard from "../../components/Cards/DealsCard"
 import axios from "axios"
@@ -62,45 +62,47 @@ class TopDeals extends React.Component {
   render() {
     return (
       <>
-        <Row className='my-5'>
-          <h2 className='title text-center w-100 my-5'>Top Deals Right Now!</h2>
-          <Col md={{ size: "8", offset: 2 }} lg={{ size: "4", offset: 0 }}>
-            {this.state.loading ? (
-              this.loader()
-            ) : (
-              <DealsCard item={this.state.item[0]} currency={this.state.currency}/>
-            )}
-          </Col>
-          <Col md={{ size: "8", offset: 2 }} lg={{ size: "4", offset: 0 }}>
-            {this.state.loading ? (
-              this.loader()
-            ) : (
-              <DealsCard item={this.state.item[1]} currency={this.state.currency}/>
-            )}
-          </Col>
-          <Col md={{ size: "8", offset: 2 }} lg={{ size: "4", offset: 0 }}>
-            {this.state.loading ? (
-              this.loader()
-            ) : (
-              <DealsCard item={this.state.item[2]} currency={this.state.currency}/>
-            )}
-          </Col>
-        </Row>
-        <Row>
-          <Col sm={{ size: "4", offset: "4" }}>
-            <Link to='deals' onClick={this.scrollToTop}>
-              <Button
-                className='d-lg-block w-100'
-                color='info'
-                data-placement='right'
-                type='button'
-                target='_blank'
-              >
-                View All Deals!
-              </Button>
-            </Link>
-          </Col>
-        </Row>
+        <Container>
+          <Row className='my-5'>
+            <h2 className='title text-center w-100 my-5'>Top Deals Right Now!</h2>
+            <Col md={{ size: "8", offset: 2 }} lg={{ size: "4", offset: 0 }}>
+              {this.state.loading ? (
+                this.loader()
+              ) : (
+                <DealsCard item={this.state.item[0]} currency={this.state.currency}/>
+              )}
+            </Col>
+            <Col md={{ size: "8", offset: 2 }} lg={{ size: "4", offset: 0 }}>
+              {this.state.loading ? (
+                this.loader()
+              ) : (
+                <DealsCard item={this.state.item[1]} currency={this.state.currency}/>
+              )}
+            </Col>
+            <Col md={{ size: "8", offset: 2 }} lg={{ size: "4", offset: 0 }}>
+              {this.state.loading ? (
+                this.loader()
+              ) : (
+                <DealsCard item={this.state.item[2]} currency={this.state.currency}/>
+              )}
+            </Col>
+          </Row>
+          <Row>
+            <Col sm={{ size: "4", offset: "4" }}>
+              <Link to='/deals' onClick={this.scrollToTop}>
+                <Button
+                  className='d-lg-block w-100'
+                  color='info'
+                  data-placement='right'
+                  type='button'
+                  target='_blank'
+                >
+                  View All Deals!
+                </Button>
+              </Link>
+            </Col>
+          </Row>
+        </Container>
       </>
     )
   }
