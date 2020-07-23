@@ -301,7 +301,15 @@ class Manufacturers extends React.Component {
                   </Row>
                 </div>
               </Row>
-              <Row>{columns}</Row>
+              {columns.length ? (
+                <Row>{columns}</Row>
+              ) : (
+                <Row>
+                  <div className='w-100'>
+                    <h3 className='text-center'>No results found!</h3>
+                  </div>
+                </Row>
+              )}
               {this.state.limit < this.state.dealLength ? (
                 <Row className='mt-5'>
                   <div className='w-100'>
