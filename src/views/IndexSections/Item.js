@@ -79,6 +79,7 @@ class Item extends React.Component {
                 type='button'
                 target='_blank'
                 href={urls[store.store] + store.item_url}
+                style={{ WebkitAppearance: "none" }}
               >
                 Website
               </Button>
