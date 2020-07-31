@@ -1,6 +1,6 @@
 # AirsoftPricesWebsite
 The website for the Airsoft Price Comparison Website
 
-Current development URL: http://dt0vkgmwr2yvs.cloudfront.net/index
+Current deployment URL: https://airsoft-prices.com/index
 
 This uses a CSS styles made by Creative Tim.
