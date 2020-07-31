@@ -15,36 +15,36 @@ class AddAProduct extends React.Component {
       sent: false,
       nameInvalid: false,
       emailInvalid: false,
-      productInvalid: false
+      productInvalid: false,
     }
   }
 
   onFormSubmit = () => {
     const { name, email, product } = this.state
 
-    if(!name) {
+    if (!name) {
       this.setState({ nameInvalid: true })
-    } else if(!email) {
+    } else if (!email) {
       this.setState({ emailInvalid: true })
-    } else if(!product) {
+    } else if (!product) {
       this.setState({ productInvalid: true })
     }
 
-    if(name & email & product) {
+    if (name && email && product) {
       axios
-      .get(
-        "https://3eg3r872u3.execute-api.eu-west-2.amazonaws.com/staging/submitform",
-        {
-          params: {
-            name: name,
-            email: email,
-            product: product
-          },
-        }
-      )
-      .then(() => {
-        this.setState({ sent: true })
-      })
+        .get(
+          "https://3eg3r872u3.execute-api.eu-west-2.amazonaws.com/staging/submitform",
+          {
+            params: {
+              name: name,
+              email: email,
+              product: product,
+            },
+          }
+        )
+        .then(() => {
+          this.setState({ sent: true })
+        })
     }
   }
 
@@ -52,7 +52,7 @@ class AddAProduct extends React.Component {
     let invalid = `${e.target.name}Invalid`
 
     this.setState({ [e.target.name]: e.target.value })
-    if(e.target.value){
+    if (e.target.value) {
       this.setState({ [invalid]: false })
     } else {
       this.setState({ [invalid]: true })
@@ -61,10 +61,7 @@ class AddAProduct extends React.Component {
 
   render() {
     return (
-      <div
-        className='section section-download w-100'
-        id='add-a-product'
-      >
+      <div className='section section-download w-100' id='add-a-product'>
         <img alt='...' className='path' src={require("assets/img/path1.png")} />
         <Container>
           <Row className='justify-content-md-center'>
@@ -76,58 +73,69 @@ class AddAProduct extends React.Component {
               </h4>
             </Col>
             <Col className='text-center' lg='8' md='12'>
-              <Form>
-                <Row>
-                  <Col md='6'>
-                    <FormGroup>
-                      <label>Your Name</label>
-                      <Input
-                        placeholder='John Smith'
-                        type='text'
-                        name='name'
-                        onChange={this.onChange}
-                        invalid={this.state.nameInvalid}
-                      />
-                    </FormGroup>
-                  </Col>
-                  <Col md='6'>
-                    <FormGroup>
-                      <label>Email address</label>
-                      <Input
-                        placeholder='john.smith@email.com'
-                        type='email'
-                        name='email'
-                        onChange={this.onChange}
-                        invalid={this.state.emailInvalid}
-                      />
-                    </FormGroup>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col md='12'>
-                    <FormGroup>
-                      <label>Product</label>
-                      <Input
-                        placeholder='An airsoft product'
-                        type='text'
-                        name='product'
-                        onChange={this.onChange}
-                        invalid={this.state.productInvalid}
-                      />
-                    </FormGroup>
-                  </Col>
-                </Row>
-                <Button
-                  className='float-right'
-                  color='info'
-                  data-placement='right'
-                  id='tooltip341148792'
-                  type='button'
-                  onClick={() => this.onFormSubmit()}
-                >
-                  Request Product
-                </Button>
-              </Form>
+              {!this.state.sent ? (
+                <Form>
+                  <Row>
+                    <Col md='6'>
+                      <FormGroup>
+                        <label>Your Name</label>
+                        <Input
+                          placeholder='John Smith'
+                          type='text'
+                          name='name'
+                          onChange={this.onChange}
+                          invalid={this.state.nameInvalid}
+                        />
+                      </FormGroup>
+                    </Col>
+                    <Col md='6'>
+                      <FormGroup>
+                        <label>Email address</label>
+                        <Input
+                          placeholder='john.smith@email.com'
+                          type='email'
+                          name='email'
+                          onChange={this.onChange}
+                          invalid={this.state.emailInvalid}
+                        />
+                      </FormGroup>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col md='12'>
+                      <FormGroup>
+                        <label>Product</label>
+                        <Input
+                          placeholder='An airsoft product'
+                          type='text'
+                          name='product'
+                          onChange={this.onChange}
+                          invalid={this.state.productInvalid}
+                        />
+                      </FormGroup>
+                    </Col>
+                  </Row>
+                  <Button
+                    className='float-right'
+                    color='info'
+                    data-placement='right'
+                    id='tooltip341148792'
+                    type='button'
+                    onClick={() => this.onFormSubmit()}
+                  >
+                    Request Product
+                  </Button>
+                </Form>
+              ) : (
+                <div>
+                  <h4>
+                    <strong>Product Request Sent!</strong>
+                  </h4>
+                  <h5>
+                    We will let you know when it's been added to the system.
+                  </h5>
+                </div>
+              )}
             </Col>
           </Row>
         </Container>

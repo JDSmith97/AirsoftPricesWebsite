@@ -65,10 +65,18 @@ class Item extends React.Component {
             <th scope='row' className='text-white'>
               {storeNames[store.store]}
             </th>
-            {this.state.currency === "true" ? (
-              <td>{store.item_price_eur}</td>
+            {store.item_on_sale > 0 ? (
+              this.state.currency === "true" ? (
+                <td className="text-warning">{store.item_price_eur}</td>
+              ) : (
+                <td className="text-warning">{store.item_price_gbp}</td>
+              )
             ) : (
-              <td>{store.item_price_gbp}</td>
+              this.state.currency === "true" ? (
+                <td>{store.item_price_eur}</td>
+              ) : (
+                <td>{store.item_price_gbp}</td>
+              )
             )}
             <td>{store.item_stock}</td>
             <td>

@@ -146,10 +146,20 @@ class IndexNavbar extends React.Component {
               </div>
               <Nav navbar className='mt-2'>
                 <NavItem>
-                  <NavLink tag={Link} to="/deals" className="nav-link d-none d-lg-block font-weight-light">
+                  <NavLink
+                    tag={Link}
+                    to='/deals'
+                    className='nav-link d-none d-lg-block font-weight-light'
+                    onClick={this.scrollToTop}
+                  >
                     Top Deals
                   </NavLink>
-                  <NavLink tag={Link} to="/deals" className="nav-link pl-2 mb-1 d-lg-none d-xl-none font-weight-light" onClick={this.scrollToTop}>
+                  <NavLink
+                    tag={Link}
+                    to='/deals'
+                    className='nav-link pl-2 mb-1 d-lg-none d-xl-none font-weight-light'
+                    onClick={this.scrollToTop}
+                  >
                     Top Deals
                   </NavLink>
                 </NavItem>
@@ -166,22 +176,46 @@ class IndexNavbar extends React.Component {
                     Airsoft Guns
                   </DropdownToggle>
                   <DropdownMenu className='dropdown-with-icons'>
-                    <DropdownItem tag={Link} to='/categories/Assault Rifle' onClick={this.scrollToTop}>
+                    <DropdownItem
+                      tag={Link}
+                      to='/categories/Assault Rifle'
+                      onClick={this.scrollToTop}
+                    >
                       Assault Rifles
                     </DropdownItem>
-                    <DropdownItem tag={Link} to='/categories/Pistol' onClick={this.scrollToTop}>
+                    <DropdownItem
+                      tag={Link}
+                      to='/categories/Pistol'
+                      onClick={this.scrollToTop}
+                    >
                       Pistols
                     </DropdownItem>
-                    <DropdownItem tag={Link} to='/categories/Shotgun' onClick={this.scrollToTop}>
+                    <DropdownItem
+                      tag={Link}
+                      to='/categories/Shotgun'
+                      onClick={this.scrollToTop}
+                    >
                       Shotguns
                     </DropdownItem>
-                    <DropdownItem tag={Link} to='/categories/Sniper Rifle' onClick={this.scrollToTop}>
+                    <DropdownItem
+                      tag={Link}
+                      to='/categories/Sniper Rifle'
+                      onClick={this.scrollToTop}
+                    >
                       Sniper Rifles
                     </DropdownItem>
-                    <DropdownItem tag={Link} to='/categories/Submachine Gun' onClick={this.scrollToTop}>
+                    <DropdownItem
+                      tag={Link}
+                      to='/categories/Submachine Gun'
+                      onClick={this.scrollToTop}
+                    >
                       Submachine Guns
                     </DropdownItem>
-                    <DropdownItem tag={Link} to='/categories/Support Gun' onClick={this.scrollToTop}>
+                    <DropdownItem
+                      tag={Link}
+                      to='/categories/Support Gun'
+                      onClick={this.scrollToTop}
+                    >
                       Support Guns
                     </DropdownItem>
                   </DropdownMenu>
@@ -199,10 +233,46 @@ class IndexNavbar extends React.Component {
                     Manufacturers
                   </DropdownToggle>
                   <DropdownMenu className='dropdown-with-icons'>
-                    <DropdownItem tag={Link} to='/manufacturers/G&G' onClick={this.scrollToTop}>
+                    <DropdownItem
+                      tag={Link}
+                      to='/manufacturers/Ares'
+                      onClick={this.scrollToTop}
+                    >
+                      Ares
+                    </DropdownItem>
+                    <DropdownItem
+                      tag={Link}
+                      to='/manufacturers/ARMORER WORKS'
+                      onClick={this.scrollToTop}
+                    >
+                      ARMORER WORKS
+                    </DropdownItem>
+                    <DropdownItem
+                      tag={Link}
+                      to='/manufacturers/ASG'
+                      onClick={this.scrollToTop}
+                    >
+                      ASG
+                    </DropdownItem>
+                    <DropdownItem
+                      tag={Link}
+                      to='/manufacturers/ICS'
+                      onClick={this.scrollToTop}
+                    >
+                      ICS
+                    </DropdownItem>
+                    <DropdownItem
+                      tag={Link}
+                      to='/manufacturers/G&G'
+                      onClick={this.scrollToTop}
+                    >
                       G&G
                     </DropdownItem>
-                    <DropdownItem tag={Link} to='/manufacturers/Tokyo Marui' onClick={this.scrollToTop}>
+                    <DropdownItem
+                      tag={Link}
+                      to='/manufacturers/Tokyo Marui'
+                      onClick={this.scrollToTop}
+                    >
                       Tokyo Marui
                     </DropdownItem>
                   </DropdownMenu>

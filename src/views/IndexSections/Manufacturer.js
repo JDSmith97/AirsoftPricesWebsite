@@ -306,7 +306,7 @@ class Manufacturers extends React.Component {
               ) : (
                 <Row>
                   <div className='w-100'>
-                    <h3 className='text-center'>No results found!</h3>
+                    <h3 className='text-center'>No products found!</h3>
                   </div>
                 </Row>
               )}
