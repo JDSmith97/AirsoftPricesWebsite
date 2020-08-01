@@ -67,6 +67,10 @@ class PageHeader extends React.Component {
     }
   }
 
+  scrollToTop = () => {
+    window.scrollTo(0, 0)
+  }
+
   render() {
     const defaultProps = {
       options: this.state.allItems,
@@ -74,7 +78,8 @@ class PageHeader extends React.Component {
     };
 
     if(this.state.redirect) {
-        return <Redirect to={`/item/${this.state.value.item_id}`}/>
+      this.scrollToTop()
+      return <Redirect to={`/item/${this.state.value.item_id}`}/>
     }
 
     return (
@@ -102,7 +107,7 @@ class PageHeader extends React.Component {
               getOptionLabel={(option) => option.item_name}
               renderOption={option => (
                 <React.Fragment>
-                  <NavLink to={`item/${option.item_id}`}>
+                  <NavLink to={`item/${option.item_id}`} onClick={this.scrollToTop}>
                     {option.item_name}
                   </NavLink>
                 </React.Fragment>

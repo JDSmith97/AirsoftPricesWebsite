@@ -230,6 +230,120 @@ class IndexNavbar extends React.Component {
                     onClick={(e) => e.preventDefault()}
                   >
                     <i className='fa d-lg-none d-xl-none' />
+                    Magazines
+                  </DropdownToggle>
+                  <DropdownMenu className='dropdown-with-icons'>
+                    <DropdownItem
+                      tag={Link}
+                      to='/categories/STANAG Magazine'
+                      onClick={this.scrollToTop}
+                    >
+                      STANAG / AR / M4 Magazine
+                    </DropdownItem>
+                    <DropdownItem
+                      tag={Link}
+                      to='/categories/Pistol Magazine'
+                      onClick={this.scrollToTop}
+                    >
+                      Pistol Magazine
+                    </DropdownItem>
+                    <DropdownItem
+                      tag={Link}
+                      to='/categories/Gas Magazine'
+                      onClick={this.scrollToTop}
+                    >
+                      Gas Magazine
+                    </DropdownItem>
+                    <DropdownItem
+                      tag={Link}
+                      to='/categories/Sniper Magazine'
+                      onClick={this.scrollToTop}
+                    >
+                      Sniper Magazine
+                    </DropdownItem>
+                    <DropdownItem
+                      tag={Link}
+                      to='/categories/Box Magazine'
+                      onClick={this.scrollToTop}
+                    >
+                      Box Magazine
+                    </DropdownItem>
+                    <DropdownItem
+                      tag={Link}
+                      to='/categories/Other Magazine'
+                      onClick={this.scrollToTop}
+                    >
+                      Other Magazine
+                    </DropdownItem>
+                  </DropdownMenu>
+                </UncontrolledDropdown>
+                <UncontrolledDropdown nav>
+                  <DropdownToggle
+                    caret
+                    color='default'
+                    data-toggle='dropdown'
+                    href='#airsoftprices'
+                    nav
+                    onClick={(e) => e.preventDefault()}
+                  >
+                    <i className='fa d-lg-none d-xl-none' />
+                    Upgrades & Parts
+                  </DropdownToggle>
+                  <DropdownMenu className='dropdown-with-icons'>
+                    <DropdownItem
+                      tag={Link}
+                      to='/categories/Hop Up Units & Rubbers'
+                      onClick={this.scrollToTop}
+                    >
+                      Hop Up Units & Rubbers
+                    </DropdownItem>
+                    <DropdownItem
+                      tag={Link}
+                      to='/categories/Inner Barrels'
+                      onClick={this.scrollToTop}
+                    >
+                      Inner Barrels
+                    </DropdownItem>
+                    <DropdownItem
+                      tag={Link}
+                      to='/categories/Electric Interal Parts'
+                      onClick={this.scrollToTop}
+                    >
+                      Electric Internal Parts
+                    </DropdownItem>
+                    <DropdownItem
+                      tag={Link}
+                      to='/categories/Gas Interal Parts'
+                      onClick={this.scrollToTop}
+                    >
+                      Gas Internal Parts
+                    </DropdownItem>
+                    <DropdownItem
+                      tag={Link}
+                      to='/categories/Spring Interal Parts'
+                      onClick={this.scrollToTop}
+                    >
+                      Spring Internal Parts
+                    </DropdownItem>
+                    <DropdownItem
+                      tag={Link}
+                      to='/categories/Other Magazine'
+                      onClick={this.scrollToTop}
+                    >
+                      Magazine Parts
+                    </DropdownItem>
+                  </DropdownMenu>
+                </UncontrolledDropdown>
+                <UncontrolledDropdown nav>
+                  <DropdownToggle
+                    caret
+                    color='default'
+                    data-toggle='dropdown'
+                    href='#airsoftprices'
+                    nav
+                    onClick={(e) => e.preventDefault()}
+                  >
+                    <i className='fa d-lg-none d-xl-none' />
                     Manufacturers
                   </DropdownToggle>
                   <DropdownMenu className='dropdown-with-icons'>
@@ -256,17 +370,17 @@ class IndexNavbar extends React.Component {
                     </DropdownItem>
                     <DropdownItem
                       tag={Link}
-                      to='/manufacturers/ICS'
-                      onClick={this.scrollToTop}
-                    >
-                      ICS
-                    </DropdownItem>
-                    <DropdownItem
-                      tag={Link}
                       to='/manufacturers/G&G'
                       onClick={this.scrollToTop}
                     >
                       G&G
+                    </DropdownItem>
+                    <DropdownItem
+                      tag={Link}
+                      to='/manufacturers/ICS'
+                      onClick={this.scrollToTop}
+                    >
+                      ICS
                     </DropdownItem>
                     <DropdownItem
                       tag={Link}
