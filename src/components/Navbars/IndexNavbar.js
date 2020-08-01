@@ -292,7 +292,7 @@ class IndexNavbar extends React.Component {
                   <DropdownMenu className='dropdown-with-icons'>
                     <DropdownItem
                       tag={Link}
-                      to='/categories/Hop Up Units & Rubbers'
+                      to='/categories/Hop Up Components'
                       onClick={this.scrollToTop}
                     >
                       Hop Up Units & Rubbers
@@ -306,21 +306,21 @@ class IndexNavbar extends React.Component {
                     </DropdownItem>
                     <DropdownItem
                       tag={Link}
-                      to='/categories/Electric Interal Parts'
+                      to='/categories/Electric Internal Parts'
                       onClick={this.scrollToTop}
                     >
                       Electric Internal Parts
                     </DropdownItem>
                     <DropdownItem
                       tag={Link}
-                      to='/categories/Gas Interal Parts'
+                      to='/categories/Gas Internal Parts'
                       onClick={this.scrollToTop}
                     >
                       Gas Internal Parts
                     </DropdownItem>
                     <DropdownItem
                       tag={Link}
-                      to='/categories/Spring Interal Parts'
+                      to='/categories/Spring Internal Parts'
                       onClick={this.scrollToTop}
                     >
                       Spring Internal Parts
