@@ -17,6 +17,17 @@ class Item extends React.Component {
   }
 
   componentDidMount() {
+    this.getItemDetails()
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.id !== this.props.id) {
+      const id = nextProps.id
+      this.getItemDetails(id)
+    }
+  }
+
+  getItemDetails() {
     this.setState({ loading: true }, () => {
       axios
         .get(
@@ -67,16 +78,14 @@ class Item extends React.Component {
             </th>
             {store.item_on_sale > 0 ? (
               this.state.currency === "true" ? (
-                <td className="text-warning">{store.item_price_eur}</td>
+                <td className='text-warning'>{store.item_price_eur}</td>
               ) : (
-                <td className="text-warning">{store.item_price_gbp}</td>
+                <td className='text-warning'>{store.item_price_gbp}</td>
               )
+            ) : this.state.currency === "true" ? (
+              <td>{store.item_price_eur}</td>
             ) : (
-              this.state.currency === "true" ? (
-                <td>{store.item_price_eur}</td>
-              ) : (
-                <td>{store.item_price_gbp}</td>
-              )
+              <td>{store.item_price_gbp}</td>
             )}
             <td>{store.item_stock}</td>
             <td>
@@ -110,7 +119,11 @@ class Item extends React.Component {
             <div className='squares square5' />
             <div className='squares square6' />
             <div className='squares square7' />
-            <Col md={{ size: "8", offset: 2 }} lg={{ size: "6", offset: 3 }} xl={{ size: "4", offset: 4}}>
+            <Col
+              md={{ size: "8", offset: 2 }}
+              lg={{ size: "6", offset: 3 }}
+              xl={{ size: "4", offset: 4 }}
+            >
               <Card className='my-5'>
                 <CardHeader>
                   <div className='card-image-item rounded'>

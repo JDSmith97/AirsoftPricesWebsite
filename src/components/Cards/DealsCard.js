@@ -8,8 +8,12 @@ class DealsCard extends Component {
 
     this.state = {
       item: this.props.item,
-      currency: this.props.currency
+      currency: this.props.currency,
     }
+  }
+
+  scrollToTop = () => {
+    window.scrollTo(0, 0)
   }
 
   render() {
