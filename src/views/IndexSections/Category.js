@@ -58,7 +58,7 @@ class Categories extends React.Component {
               limit: this.state.limit,
               offset: 0,
               category: this.state.category,
-              manufacturer: manufacturer,
+              manufacturer: this.state.selectedManufacturer,
             },
           }
         )
@@ -78,7 +78,7 @@ class Categories extends React.Component {
           params: {
             getLength: true,
             category: this.state.category,
-            manufacturer: manufacturer,
+            manufacturer: this.state.selectedManufacturer,
           },
         }
       )
@@ -108,10 +108,11 @@ class Categories extends React.Component {
   }
 
   filterManufacturers = (manufacturer) => {
-    this.setState({ selectedManufacturer: manufacturer })
-    this.getDeals(this.state.selectedCategory, manufacturer).then((data) => {
-      this.getLength(this.state.selectedCategory, manufacturer)
-      this.setState({ refresh: true })
+    this.setState({ selectedManufacturer: manufacturer, loading: true }, () => {
+      this.getDeals(this.state.selectedCategory, manufacturer).then((data) => {
+        this.getLength(this.state.selectedCategory, manufacturer)
+        this.setState({ refresh: true, loading: false })
+      })
     })
   }
 
@@ -124,10 +125,11 @@ class Categories extends React.Component {
   }
 
   clearManufacturerFilter = () => {
-    this.setState({ selectedManufacturer: null })
-    this.getDeals(this.state.selectedCategory, null).then((data) => {
-      this.getLength(this.state.selectedCategory, null)
-      this.setState({ refresh: true })
+    this.setState({ selectedManufacturer: null, loading: true }, () => {
+      this.getDeals(this.state.selectedCategory, null).then((data) => {
+        this.getLength(this.state.selectedCategory, null)
+        this.setState({ refresh: true, loading: false })
+      })
     })
   }
 
