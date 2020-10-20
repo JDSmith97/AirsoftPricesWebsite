@@ -327,7 +327,7 @@ class IndexNavbar extends React.Component {
                     </DropdownItem>
                     <DropdownItem
                       tag={Link}
-                      to='/categories/Other Magazine'
+                      to='/categories/Magazine Parts'
                       onClick={this.scrollToTop}
                     >
                       Magazine Parts
@@ -381,6 +381,13 @@ class IndexNavbar extends React.Component {
                       onClick={this.scrollToTop}
                     >
                       ICS
+                    </DropdownItem>
+                    <DropdownItem
+                      tag={Link}
+                      to='/manufacturers/Maple Leaf'
+                      onClick={this.scrollToTop}
+                    >
+                      Maple Leaf
                     </DropdownItem>
                     <DropdownItem
                       tag={Link}
