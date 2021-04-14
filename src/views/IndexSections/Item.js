@@ -1,7 +1,7 @@
 import React from "react"
 import axios from "axios"
 import { Row, Button, Table, Card, Col, CardHeader, CardBody } from "reactstrap"
-import Loader from "./../../components/Loader"
+import Loader from "./../../components/Loader/ItemLoader"
 import "./../../assets/scss/item.scss"
 
 class Item extends React.Component {

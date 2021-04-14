@@ -1,6 +1,5 @@
 import React from "react"
 import { Link } from "react-router-dom"
-// reactstrap components
 import {
   Button,
   Container,
@@ -15,7 +14,7 @@ import {
   DropdownItem,
 } from "reactstrap"
 import Chip from "@material-ui/core/Chip"
-import Loader from "./../../components/Loader"
+import Loader from "./../../components/Loader/ItemsPageLoader"
 import axios from "axios"
 import "./../../assets/scss/dealCard.scss"
 import "./../../assets/scss/blobs.scss"
@@ -44,7 +43,7 @@ class Deals extends React.Component {
     }
   }
 
-  getDeals = (category, manufacturer) => {
+  getDeals = () => {
     return new Promise((resolve, reject) => {
       axios
         .get(
@@ -60,14 +59,13 @@ class Deals extends React.Component {
         )
         .then((res) => {
           const itemInfo = res.data
-          console.log(itemInfo)
           this.setState({ items: itemInfo, loading: false })
           resolve("Data Fetched")
         })
     })
   }
 
-  getLength = (category, manufacturer) => {
+  getLength = () => {
     axios
       .get(
         `https://3eg3r872u3.execute-api.eu-west-2.amazonaws.com/staging/getalldeals`,
@@ -292,7 +290,6 @@ class Deals extends React.Component {
         </DropdownItem>
       )
     })
-    console.log(columns)
     return (
       <>
         {!this.state.loading ? (
@@ -410,7 +407,7 @@ class Deals extends React.Component {
             </Container>
           </div>
         ) : (
-          <Loader />
+          <Loader maxRows={2} isItemsPage={true} category={true} manufacturer={true}/>
         )}
       </>
     )

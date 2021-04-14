@@ -1,6 +1,5 @@
 import React from "react"
 import { Link } from "react-router-dom"
-// reactstrap components
 import {
   Button,
   Container,
@@ -15,7 +14,7 @@ import {
   DropdownItem,
 } from "reactstrap"
 import Chip from "@material-ui/core/Chip"
-import Loader from "./../../components/Loader"
+import Loader from "./../../components/Loader/ItemsPageLoader"
 import axios from "axios"
 import "./../../assets/scss/dealCard.scss"
 import FilterDrawer from "./../../components/Menu/Filter.js"
@@ -48,7 +47,7 @@ class Categories extends React.Component {
     }
   }
 
-  getDeals = (category, manufacturer) => {
+  getDeals = () => {
     return new Promise((resolve, reject) => {
       axios
         .get(
@@ -70,7 +69,7 @@ class Categories extends React.Component {
     })
   }
 
-  getLength = (category, manufacturer) => {
+  getLength = () => {
     axios
       .get(
         `https://3eg3r872u3.execute-api.eu-west-2.amazonaws.com/staging/getallitems`,
@@ -352,7 +351,7 @@ class Categories extends React.Component {
             </div>
           </div>
         ) : (
-          <Loader />
+          <Loader maxRows={2} isItemsPage={true} category={true}/>
         )}
       </>
     )

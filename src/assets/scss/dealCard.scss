@@ -20,6 +20,69 @@
   }
 }
 
+.card-deals-loading {
+  height: 517px;
+  animation-duration: 1.25s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer;
+  animation-timing-function: linear;
+  background: #f6f6f6;
+  background: linear-gradient(to right, #353862 8%, #4b4e73 40%, #353862 33%);
+  background-size: 800px 104px;
+}
+
+@keyframes placeHolderShimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
+
+.card-image-deals-loading {
+  background: #353862;
+  background-size: 800px 104px;
+  height: 283px;
+  position: relative;
+}
+
+.card-title-deals-loading {
+  background: #353862;
+  background-size: 800px 104px;
+  height: 40px;
+  position: relative;
+}
+
+.card-price-deals-loading {
+  background: #353862;
+  background-size: 800px 104px;
+  height: 20px;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.card-item-loading {
+  height: 740px;
+  animation-duration: 1.25s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer;
+  animation-timing-function: linear;
+  background: #f6f6f6;
+  background: linear-gradient(to right, #353862 8%, #4b4e73 40%, #353862 33%);
+  background-size: 800px 104px;
+}
+
+.card-price-deals-table-loading {
+  background: #353862;
+  background-size: 800px 104px;
+  height: 320px;
+  margin-bottom: 15px;
+  position: relative;
+}
+
 .vh-100 {
   height: 100vh;
 }
@@ -81,7 +144,7 @@
 
 @media (max-width: 980px) {
   h4 {
-    font-size: 1.0rem;
+    font-size: 1rem;
   }
 }
 

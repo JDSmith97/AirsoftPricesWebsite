@@ -1,8 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
-// reactstrap components
-import { Button, Row, Col, Card, CardBody, Container } from "reactstrap"
-import Loader from "react-loader-spinner"
+import { Button, Row, Col, Container } from "reactstrap"
+import Loader from "./../../components/Loader/ItemsPageLoader"
 import DealsCard from "../../components/Cards/DealsCard"
 import axios from "axios"
 import "./../../assets/scss/dealCard.scss"
@@ -35,58 +34,29 @@ class TopDeals extends React.Component {
     window.scrollTo(0, 0)
   }
 
-  loader() {
-    return (
-      <Row className='position-relative items-page d-flex justify-content-center mb-5'>
-        <div className='d-flex align-items-center'>
-          <Col className='ml-auto mr-auto'>
-            <Card className=''>
-              <CardBody>
-                <div className='d-flex justify-content-center'>
-                  <Loader
-                    type='TailSpin'
-                    color='#00BFFF'
-                    height={80}
-                    width={80}
-                  />
-                </div>
-                <h3>Loading...</h3>
-              </CardBody>
-            </Card>
-          </Col>
-        </div>
-      </Row>
-    )
-  }
-
   render() {
     return (
       <>
         <Container>
-          <Row className='my-5'>
-            <h2 className='title text-center w-100 my-5'>Top Deals Right Now!</h2>
-            <Col md={{ size: "8", offset: 2 }} lg={{ size: "4", offset: 0 }}>
-              {this.state.loading ? (
-                this.loader()
-              ) : (
-                <DealsCard item={this.state.item[0]} currency={this.state.currency}/>
-              )}
-            </Col>
-            <Col md={{ size: "8", offset: 2 }} lg={{ size: "4", offset: 0 }}>
-              {this.state.loading ? (
-                this.loader()
-              ) : (
-                <DealsCard item={this.state.item[1]} currency={this.state.currency}/>
-              )}
-            </Col>
-            <Col md={{ size: "8", offset: 2 }} lg={{ size: "4", offset: 0 }}>
-              {this.state.loading ? (
-                this.loader()
-              ) : (
-                <DealsCard item={this.state.item[2]} currency={this.state.currency}/>
-              )}
-            </Col>
-          </Row>
+          {this.state.loading ? (
+            <div>
+              <h2 className='title text-center w-100'>Top Deals Right Now!</h2>
+              <Loader maxRows={1} isItemsPage={false}/>
+            </div>
+          ) : (
+            <Row className='my-5'>
+              <h2 className='title text-center w-100 my-5'>Top Deals Right Now!</h2>
+              <Col md={{ size: "8", offset: 2 }} lg={{ size: "4", offset: 0 }}>
+                  <DealsCard item={this.state.item[0]} currency={this.state.currency}/>
+              </Col>
+              <Col md={{ size: "8", offset: 2 }} lg={{ size: "4", offset: 0 }}>
+                  <DealsCard item={this.state.item[1]} currency={this.state.currency}/>
+              </Col>
+              <Col md={{ size: "8", offset: 2 }} lg={{ size: "4", offset: 0 }}>
+                  <DealsCard item={this.state.item[2]} currency={this.state.currency}/>
+              </Col>
+            </Row>
+          )}
           <Row>
             <Col sm={{ size: "4", offset: "4" }}>
               <Link to='/deals' onClick={this.scrollToTop}>
